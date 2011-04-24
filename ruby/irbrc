@@ -1,10 +1,13 @@
+puts "loading irbrc..."
+require 'rubygems'
 require 'irb/completion'
 require 'map_by_method'
 require 'what_methods'
 require 'pp'
 require 'irb/ext/save-history'
-require 'rubygems'
 require 'ap'
+
+puts "loaded"
 
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
@@ -24,10 +27,6 @@ class Object
     end
     puts `ri '#{method}'`
   end
-end
-
-def r
-  reload!
 end
 
 load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
