@@ -1,0 +1,5 @@
+Host github-dave.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_davsims_rsa
+
