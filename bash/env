@@ -7,13 +7,15 @@ export PATH=${PATH}:/Library/ParivedaInsite/rhodes/bin
 export PATH=${PATH}:/Library/Ruby/Gems/1.8/gems/soap4r-1.5.8/bin
 export JAVA_HOME=/Library/Java/Home
 export ANT_HOME=/opt/local/bin/ant
-PATH=$JAVA_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$PATH
 export SDK_DIR=/Library/android-sdk-mac_86
 
 # MacPorts Installer addition on 2009-08-10_at_12:52:35: adding an appropriate MANPATH variable for use with MacPorts.
 export MANPATH=/opt/local/share/man:$MANPATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+
+export RUBYOPT=rubygems
 
 # command line fu
 export PS1="\[\033[0;32m\]\u@\[\033[0;35m\]\w\[\033[0;0m\]$ "

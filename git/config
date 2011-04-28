@@ -5,3 +5,5 @@
 	last = log -1 HEAD
 	co = checkout
 	ci = commit
+[apply]
+	whitespace = nowarn
