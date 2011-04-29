@@ -24,23 +24,3 @@ export PS1="\[\033[0;32m\]\u@\[\033[0;35m\]\w\[\033[0;0m\]$ "
 # MacPorts Installer addition on 2010-02-16_at_11:26:31: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
-# color diffs for SVN
-function sdiff () {
- if [ "$1" != "" ]; then
-    svn diff $@ | colordiff;
- else
-    svn diff | colordiff;
- fi
-}
-
-function gdiff () {
- if [ "$1" != "" ]; then
-    git diff $@ | colordiff;
- else
-    git diff | colordiff;
- fi
-}
-
-function svn_add () {
-	echo $1
-}

@@ -1,44 +1,55 @@
-alias glog='git log --pretty=oneline --color'
-alias gp='git push origin master'
-alias rrs='rake rhosync:start'
-alias rip='rake run:iphone'
-alias rcl='rake clean:iphone'
-alias cdb='rake server:reset_db'
+# system
+alias ip='ifconfig | grep inet'
 alias rcr='rcl; rip'
-alias rdip='rake device:iphone:production'
-alias parirhodes='cd /Library/ParivedaInsite; mate .'
-alias gl='git log --stat --color'
-alias gemdocs='gem server & open -a /Applications/FireFox.app http://localhost:8808'
+alias ls='ls -lah'
+alias rm='rm -i'
+alias ..='cd..'
 alias h='history'
 alias tu='top -o cpu'
 alias tm='top -o -vsize'
-alias ..='cd..'
 alias reload='source ~/.bashrc'
 alias dotfiles='mate -w ~/bin/dotfiles'
+
+# mac
+alias preview="/Applications/Preview.app/Contents/MacOS/preview"
+alias ff_term='/Applications/Firefox.app/Contents/MacOS/firefox-bin --profilemanager'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
 alias ff="open -a /Applications/FireFox.app"
 
+# git
+alias glog='git log --pretty=oneline --color'
+alias gpush='git push origin master'
+alias gpull='git push origin master'
+alias gl='git log --stat --color'
+
+# svn
+alias status='svn status'
+alias saa='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+alias sra='svn status | grep "^\!" | awk "{print \$2}" | xargs svn remove'
+alias up='svn up'
+alias sfl="svn log | grep -B 6 -A 6 $1"
+
+# apache
+alias apache='mate /etc/apache2/httpd.conf'
+alias apache_restart='sudo /usr/sbin/apachectl restart'
+
+# ruby
 alias gems='cd /Library/Ruby/Gems/1.8/gems'
-alias ip='ifconfig | grep inet'
+alias gemdocs='gem server & open -a /Applications/FireFox.app http://localhost:8808'
 alias irbrc='vi /Users/sts/.irbrc'
+alias wsdl2ruby='wsdl2ruby.rb --type client --force --wsdl $2'
+
+# rails
 alias ss='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; script/server'
 alias sc='./script/console'
 alias sg='./script/generate'
 alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database.."; rake db:test:purge; echo "Preparing test database.."; rake db:test:prepare'
-alias saa='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
-alias sra='svn status | grep "^\!" | awk "{print \$2}" | xargs svn remove'
-alias up='svn up'
-alias ls='ls -lah'
-alias status='svn status'
-alias rm='rm -i'
-alias testecho='echo $1'
-alias preview="/Applications/Preview.app/Contents/MacOS/preview"
-alias ff_term='/Applications/Firefox.app/Contents/MacOS/firefox-bin --profilemanager'
-alias pull='git pull heroku master'
 alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
-alias sfl="svn log | grep -B 6 -A 6 $1"
-alias wsdl2ruby='wsdl2ruby.rb --type client --force --wsdl $2'
+
+# rho
+alias rrs='rake rhosync:start'
+alias rip='rake run:iphone'
+alias rcl='rake clean:iphone'
+
+# misc
 alias teamcity='cd /Applications/TeamCity/bin/;sh runAll.sh start'
-alias rhodes_trunk='cd /Users/davesims/projects/InsiteMobilev1-rhodes'
-alias rhosync_trunk='cd /Users/davesims/projects/InsiteMobilev1-rhosync'
-alias bd='rake device:iphone:production'
