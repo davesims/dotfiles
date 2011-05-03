@@ -1,13 +1,13 @@
-puts "loading irbrc..."
+start_load = Time.now
 require 'rubygems'
 require 'irb/completion'
 require 'map_by_method'
 require 'what_methods'
-require 'pp'
 require 'irb/ext/save-history'
+require 'pp'
 require 'ap'
 
-
+load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
 
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
@@ -29,8 +29,4 @@ class Object
   end
 end
 
-load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
-
-puts "irbrc loaded"
-
-
+puts "irbrc loaded in #{(Time.now - start_load).to_s} sec"

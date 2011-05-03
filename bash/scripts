@@ -1,0 +1,20 @@
+# color diffs for SVN
+function sdiff () {
+ if [ "$1" != "" ]; then
+    svn diff $@ | colordiff;
+ else
+    svn diff | colordiff;
+ fi
+}
+
+function gdiff () {
+ if [ "$1" != "" ]; then
+    git diff $@ | colordiff;
+ else
+    git diff | colordiff;
+ fi
+}
+
+function svn_add () {
+	echo $1
+}
