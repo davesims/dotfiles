@@ -1,6 +1,5 @@
 # system
 alias ip='ifconfig | grep inet'
-alias rcr='rcl; rip'
 alias ls='ls -lah'
 alias rm='rm -i'
 alias ..='cd..'
@@ -9,11 +8,14 @@ alias tu='top -o cpu'
 alias tm='top -o -vsize'
 alias reload='source ~/.bashrc'
 alias dotfiles='mate -w ~/bin/dotfiles'
+alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
+
+# ssh
+alias nrh101='ssh dsims@nrhrho101'
 
 # mac
 alias preview="/Applications/Preview.app/Contents/MacOS/preview"
 alias ff_term='/Applications/Firefox.app/Contents/MacOS/firefox-bin --profilemanager'
-alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
 alias ff="open -a /Applications/FireFox.app"
 
 # git
@@ -30,13 +32,15 @@ alias up='svn up'
 alias sfl="svn log | grep -B 6 -A 6 $1"
 
 # apache
-alias apache='mate /etc/apache2/httpd.conf'
+alias apache_conf='mate /etc/apache2/httpd.conf'
 alias apache_restart='sudo /usr/sbin/apachectl restart'
+alias apache_stop='sudo /usr/sbin/apachectl stop'
+alias apache_log='sudo tail -f /var/log/httpd/error_log /var/log/httpd/access_log'
+
 
 # ruby
 alias gems='cd /Library/Ruby/Gems/1.8/gems'
 alias gemdocs='gem server & open -a /Applications/FireFox.app http://localhost:8808'
-alias irbrc='vi /Users/sts/.irbrc'
 alias wsdl2ruby='wsdl2ruby.rb --type client --force --wsdl $2'
 
 # rails
@@ -49,7 +53,14 @@ alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
 # rho
 alias rrs='rake rhosync:start'
 alias rip='rake run:iphone'
-alias rcl='rake clean:iphone'
+alias ran='rake run:android'
+alias rad="rake run:android:device"
+alias rci='rake clean:iphone'
+alias rca='rake clean:android'
+alias android_browser='adb -e forward tcp:8888 tcp:8080; open -a /Applications/Safari.app http://localhost:8888/app'
+alias android_log="adb -e logcat APP:I *:S"
+alias install_android="adb -d install -r ~/projects/InsiteMobile-rhodes/bin/target/InSite_signed.apk"
+
 
 # misc
 alias teamcity='cd /Applications/TeamCity/bin/;sh runAll.sh start'
