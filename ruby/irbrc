@@ -1,7 +1,7 @@
 start_load = Time.now
 require 'rubygems'
 require 'irb/completion'
-require 'map_by_method'
+# require 'map_by_method' # this adds a good 3-4 seconds to irb load
 require 'what_methods'
 require 'irb/ext/save-history'
 require 'pp'
@@ -62,7 +62,7 @@ class Object
         args = "()"
       elsif method.arity > 0
         n = method.arity
-        args = "(#{(1..n).collect {|i| "arg#{i}"}.join(", ")})"eix
+        args = "(#{(1..n).collect {|i| "arg#{i}"}.join(", ")})"
       elsif method.arity < 0
         n = -method.arity
         args = "(#{(1..n).collect {|i| "arg#{i}"}.join(", ")}, ...)"
