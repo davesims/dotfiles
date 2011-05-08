@@ -81,6 +81,4 @@ class Object
   end
 end
 
-
-
 puts "irb loaded in #{(Time.now - start_load).to_s} sec"

@@ -1,8 +1,11 @@
-# system
+# system conweeniences
 alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
 alias rm='rm -i'
-alias ..='cd..'
+alias :='cd ..'
+alias ::='cd ../..'
+alias :::='cd ../../..'
+alias home='cd ~/'
 alias h='history'
 alias tu='top -o cpu'
 alias tm='top -o -vsize'
@@ -10,8 +13,11 @@ alias reload='source ~/.bashrc'
 alias dotfiles='mate -w ~/bin/dotfiles'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
 
+
 # ssh
-alias nrh101='ssh dsims@nrhrho101'
+alias 101='ssh dsims@10.143.28.181'
+alias 103='ssh dsims@nrhrho103'
+alias cap101='ssh cap@10.143.28.181'
 
 # mac
 alias preview="/Applications/Preview.app/Contents/MacOS/preview"
@@ -37,7 +43,6 @@ alias apache_restart='sudo /usr/sbin/apachectl restart'
 alias apache_stop='sudo /usr/sbin/apachectl stop'
 alias apache_log='sudo tail -f /var/log/httpd/error_log /var/log/httpd/access_log'
 
-
 # ruby
 alias gems='cd /Library/Ruby/Gems/1.8/gems'
 alias gemdocs='gem server & open -a /Applications/FireFox.app http://localhost:8808'
@@ -52,13 +57,15 @@ alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
 
 # rho
 alias rrs='rake rhosync:start'
-alias rip='rake run:iphone'
-alias ran='rake run:android'
-alias rad="rake run:android:device"
-alias rci='rake clean:iphone'
+alias rip='rake run:iphone; tail -f *.txt'
+alias ran='rake run:android; adb -e logcat APP:I *:S'
+alias rad="rake run:android:device; adb -d logcat APP:I *:S"
+alias rci='rake clean:iphone; rake run:iphone'
 alias rca='rake clean:android'
+alias iphone_browser='open -a /Applications/FireFox.app http://localhost:8080/app'
 alias android_browser='adb -e forward tcp:8888 tcp:8080; open -a /Applications/Safari.app http://localhost:8888/app'
-alias android_log="adb -e logcat APP:I *:S"
+alias ael="adb -e logcat APP:I *:S"
+alias adl="adb -d logcat APP:I *:S"
 alias install_android="adb -d install -r ~/projects/InsiteMobile-rhodes/bin/target/InSite_signed.apk"
 
 

@@ -1,6 +1,8 @@
-cp ./home.bashrc ~/.bashrc
-ln -s $PWD/ruby/irbrc ~/.irbrc
-ln -s $PWD/ruby/pryrc ~/.pryrc
-ln -s $PWD/ruby/gemrc ~/.gemrc
-ln -s $PWD/git/config ~/.gitconfig
-ln -s $PWD/ssh/irbrc ~/.ssh/config
+# run this once after pulling dotfiles to ~/bin/dotfiles
+cp  ~/bin/dotfiles/home.bashrc ~/.bashrc
+cp  ~/bin/dotfiles/bash_profile ~/.bash_profile
+ln -s ~/bin/dotfiles/ruby/irbrc ~/.irbrc
+ln -s ~/bin/dotfiles/ruby/pryrc ~/.pryrc
+ln -s ~/bin/dotfiles/ruby/gemrc ~/.gemrc
+ln -s ~/bin/dotfiles/git/config ~/.gitconfig
+ln -s ~/bin/dotfiles/ssh/irbrc ~/.ssh/config

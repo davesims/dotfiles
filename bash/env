@@ -20,8 +20,13 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export RUBYOPT=rubygems
 # command line fu
-export PS1="\[\033[0;32m\]\u@\[\033[0;35m\]\w\[\033[0;0m\]$ "
+export PS1="\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]$ "
 # default editor
 export EDITOR="mate -w"
+
+# history options
+export HISTCONTROL=erasedups # don't store duplicate lines
+export HISTSIZE=100000 #remember 100k unique lines
+shopt -s histappend
 
 
