@@ -55,6 +55,9 @@ alias sg='./script/generate'
 alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database.."; rake db:test:purge; echo "Preparing test database.."; rake db:test:prepare'
 alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
 
+#redis
+alias redis_log='tail -f /var/log/redis.log'
+
 # rho
 alias rrs='rake rhosync:start'
 alias rip='rake run:iphone; tail -f *.txt'
