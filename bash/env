@@ -29,4 +29,6 @@ export HISTCONTROL=erasedups # don't store duplicate lines
 export HISTSIZE=100000 #remember 100k unique lines
 shopt -s histappend
 
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && . "/usr/local/rvm/scripts/rvm"
+
 
