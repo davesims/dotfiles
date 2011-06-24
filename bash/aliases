@@ -2,9 +2,8 @@
 alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
 alias rm='rm -i'
-alias :='cd ..'
-alias ::='cd ../..'
-alias :::='cd ../../..'
+alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
+
 alias home='cd ~/'
 alias h='history'
 alias tu='top -o cpu'
@@ -15,9 +14,14 @@ alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
 
 
 # ssh
-alias 101='ssh dsims@10.143.28.181'
+alias 101='ssh dsims@nrhrho101'
+alias 102='ssh dsims@nrhrho102'
 alias 103='ssh dsims@nrhrho103'
+alias 201='ssh dsims@nrhrho201'
+alias 202='ssh dsims@nrhrho202'
+alias 203='ssh dsims@nrhrho203'
 alias cap101='ssh cap@10.143.28.181'
+alias davemain='ssh dsims@davemain -p 500'
 
 # mac
 alias preview="/Applications/Preview.app/Contents/MacOS/preview"
@@ -41,7 +45,7 @@ alias sfl="svn log | grep -B 6 -A 6 $1"
 alias apache_conf='mate /etc/apache2/httpd.conf'
 alias apache_restart='sudo /usr/sbin/apachectl restart'
 alias apache_stop='sudo /usr/sbin/apachectl stop'
-alias apache_log='sudo tail -f /var/log/httpd/error_log /var/log/httpd/access_log'
+alias apache_log="sudo tail -f /var/log/httpd/error_log /var/log/httpd/access_log tail"
 
 # ruby
 alias gems='cd /Library/Ruby/Gems/1.8/gems'
@@ -56,9 +60,10 @@ alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database
 alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
 
 #redis
-alias redis_log='tail -f /var/log/redis.log'
+alias redis_log='tail -F /var/log/redis.log'
 
 # rho
+alias iphone_db='cd ~/Library/Application\ Support/iPhone\ Simulator/4.2/Applications/'
 alias rrs='rake rhosync:start'
 alias rip='rake run:iphone; tail -f *.txt'
 alias ran='rake run:android; adb -e logcat APP:I *:S'
@@ -70,7 +75,15 @@ alias android_browser='adb -e forward tcp:8888 tcp:8080; open -a /Applications/S
 alias ael="adb -e logcat APP:I *:S"
 alias adl="adb -d logcat APP:I *:S"
 alias install_android="adb -d install -r ~/projects/InsiteMobile-rhodes/bin/target/InSite_signed.apk"
+alias push_deploy="git push dev onsite_master; cap deploy:update"
+alias onsite_merge="git co onsite_master; git merge master; git co master"
+alias omg="git push dev master; git co onsite_master; git merge master; git push dev onsite_master; git co master; cap deploy:update"
+alias current="cd /var/www/InsiteMobile/current"
+alias redis103="telnet nrhrho103 6379"
+alias redis203="telnet nrhrho203 6379"
 
 
 # misc
 alias teamcity='cd /Applications/TeamCity/bin/;sh runAll.sh start'
+alias fisheye="cd /Users/davesims/Sites/fecru-2.6.0/bin; sh run.sh"
+alias stop_fisheye="cd /Users/davesims/Sites/fecru-2.6.0/bin; sh stop.sh"
