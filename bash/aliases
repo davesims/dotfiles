@@ -2,6 +2,8 @@
 alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
 alias rm='rm -i'
+
+# tcp
 alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
 
 alias home='cd ~/'
@@ -11,7 +13,6 @@ alias tm='top -o -vsize'
 alias reload='source ~/.bashrc'
 alias dotfiles='mate -w ~/bin/dotfiles'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
-
 
 # ssh
 alias 101='ssh dsims@nrhrho101'
@@ -68,6 +69,7 @@ alias rrs='rake rhosync:start'
 alias rip='rake run:iphone; tail -f *.txt'
 alias ran='rake run:android; adb -e logcat APP:I *:S'
 alias rad="rake run:android:device; adb -d logcat APP:I *:S"
+alias radd="rake run:android:device; adb -d logcat WebCore:V *:S"
 alias rci='rake clean:iphone; rake run:iphone'
 alias rca='rake clean:android'
 alias iphone_browser='open -a /Applications/FireFox.app http://localhost:8080/app'
