@@ -21,6 +21,8 @@ alias 103='ssh dsims@nrhrho103'
 alias 201='ssh dsims@nrhrho201'
 alias 202='ssh dsims@nrhrho202'
 alias 203='ssh dsims@nrhrho203'
+alias 401='ssh dsims@nrhrhod401'
+alias 403='ssh redis@nrhrhod403'
 alias cap101='ssh cap@10.143.28.181'
 alias davemain='ssh dsims@davemain -p 500'
 
@@ -69,7 +71,7 @@ alias rrs='rake rhosync:start'
 alias rip='rake run:iphone; tail -f *.txt'
 alias ran='rake run:android; adb -e logcat APP:I *:S'
 alias rad="rake run:android:device; adb -d logcat APP:I *:S"
-alias radd="rake run:android:device; adb -d logcat WebCore:V *:S"
+alias radd="rake run:android:device; adb -d logcat"
 alias rci='rake clean:iphone; rake run:iphone'
 alias rca='rake clean:android'
 alias iphone_browser='open -a /Applications/FireFox.app http://localhost:8080/app'
