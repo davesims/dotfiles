@@ -6,7 +6,7 @@ ln -s ~/bin/dotfiles/ruby/pryrc ~/.pryrc
 ln -s ~/bin/dotfiles/ruby/gemrc ~/.gemrc
 ln -s ~/bin/dotfiles/git/config ~/.gitconfig
 ln -s ~/bin/dotfiles/vi/vimrc ~/.vimrc
-ln -s ~/bin/dotfiles/ssh/irbrc ~/.ssh/config
+mkdir ~/.ssh
+ln -s ~/bin/dotfiles/ssh/config ~/.ssh/config
 
 # sudo ln -F /System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc /usr/bin
-
