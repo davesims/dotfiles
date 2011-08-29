@@ -1,13 +1,16 @@
 ########### PATH ###########
-export PATH=$PATH:~/bin
-export PATH=$PATH:/usr/local/bin
+export PATH=~/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 export PATH=${PATH}:/Library/android-sdk-mac_x86/tools
 export PATH=${PATH}:/Library/android-sdk-mac_x86/platform-tools
-export PATH=${PATH}:/Library/ParivedaInsite/rhodes/bin
 export PATH=${PATH}:/Library/Ruby/Gems/1.8/gems/soap4r-1.5.8/bin
 export PATH=$JAVA_HOME/bin:$PATH
-# MacPorts Installer addition on 2010-02-16_at_11:26:31: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin
+
+########### MY.LSQA.NET ############
+export MYQA_INSTANCE=151
+export MYQA_API_KEY=NyPb6rXC7PEPTRAIYhNO
 
 ######### ENV #########
 export JAVA_HOME=/Library/Java/Home
@@ -18,7 +21,6 @@ export SDK_DIR=/Library/android-sdk-mac_86
 export MANPATH=/opt/local/share/man:$MANPATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export RUBYOPT=rubygems
 # command line fu
 export PS1="\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]$ "
 # default editor
@@ -29,6 +31,25 @@ export HISTCONTROL=erasedups # don't store duplicate lines
 export HISTSIZE=100000 #remember 100k unique lines
 shopt -s histappend
 
-[[ -s "/usr/local/rvm/scripts/rvm" ]] && . "/usr/local/rvm/scripts/rvm"
+# LS STUFF:
+
+# This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
+# You only want this if you are on Snow Leopard
+export ARCHFLAGS='-arch x86_64'
+
+# History: don't store duplicates
+export HISTCONTROL=erasedups
+# History: 10,000 entries
+export HISTSIZE=10000
+
+# REE for LivingSocial
+export RUBY_HEAP_FREE_MIN=1024
+export RUBY_HEAP_MIN_SLOTS=4000000
+export RUBY_HEAP_SLOTS_INCREMENT=250000
+export RUBY_GC_MALLOC_LIMIT=500000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+
 
 

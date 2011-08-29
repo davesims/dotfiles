@@ -2,9 +2,14 @@
 alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
 alias rm='rm -i'
+alias hosts="mate /etc/hosts"
+alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy"
 
 # tcp
 alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
+
+# living social stuff
+alias andwww="mate /Users/davesims/projects/deals_android/assets/www/"
 
 alias home='cd ~/'
 alias h='history'
@@ -13,23 +18,23 @@ alias tm='top -o -vsize'
 alias reload='source ~/.bashrc'
 alias dotfiles='mate -w ~/bin/dotfiles'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
-
-# ssh
-alias 101='ssh dsims@nrhrho101'
-alias 102='ssh dsims@nrhrho102'
-alias 103='ssh dsims@nrhrho103'
-alias 201='ssh dsims@nrhrho201'
-alias 202='ssh dsims@nrhrho202'
-alias 203='ssh dsims@nrhrho203'
-alias 401='ssh dsims@nrhrhod401'
-alias 403='ssh redis@nrhrhod403'
-alias cap101='ssh cap@10.143.28.181'
-alias davemain='ssh dsims@davemain -p 500'
+alias pr="ping -q -i 60 svn.livingsocial.com &"
+alias sandbox="cd /Users/davesims/Documents/workspace/sandbox/src"
 
 # mac
 alias preview="/Applications/Preview.app/Contents/MacOS/preview"
 alias ff_term='/Applications/Firefox.app/Contents/MacOS/firefox-bin --profilemanager'
 alias ff="open -a /Applications/FireFox.app"
+
+# nginx
+alias nginx_config="mate /Library/LaunchDaemons/org.nginx.nginx.plist"
+alias launch_nginx="sudo launchctl load -w /Library/LaunchDaemons/org.nginx.nginx.plist"
+alias unload_nginx="sudo launchctl unload /Library/LaunchDaemons/org.nginx.nginx.plist"
+alias kill_nginx="sudo launchctl stop org.nginx.nginx"
+alias nginx_logs="tail -f /usr/local/Cellar/nginx/1.0.5/logs/*"
+
+# launchd
+alias launchd_logs="tail -f /var/log/launchd*.log"
 
 # git
 alias glog='git log --pretty=oneline --color'
@@ -53,7 +58,6 @@ alias apache_log="sudo tail -f /var/log/httpd/error_log /var/log/httpd/access_lo
 # ruby
 alias gems='cd /Library/Ruby/Gems/1.8/gems'
 alias gemdocs='gem server & open -a /Applications/FireFox.app http://localhost:8808'
-alias wsdl2ruby='wsdl2ruby.rb --type client --force --wsdl $2'
 
 # rails
 alias ss='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; script/server'
@@ -64,6 +68,23 @@ alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
 
 #redis
 alias redis_log='tail -F /var/log/redis.log'
+
+#mysql
+alias mysql_start='/usr/local/Cellar/mysql/5.5.14/bin/mysqld_safe'
+
+#davemain slice
+alias davemain='ssh davesims@davemain'
+
+# deals
+alias android_log="adb -e logcat"
+alias deals_gems="cd /Users/davesims/.rvm/gems/ree-1.8.7-2011.03@deals/gems"
+alias deals_db="mysql -u root deals_development"
+alias deals="cd ~/projects/deals"
+alias deals_android="cd ~/projects/deals_android"
+alias myqa="ssh davesims.my.lsqa.net"
+
+# android
+alias emu='emulator -avd deals_2.2 -partition-size 128'
 
 # rho
 alias iphone_db='cd ~/Library/Application\ Support/iPhone\ Simulator/4.2/Applications/'
@@ -86,6 +107,8 @@ alias current="cd /var/www/InsiteMobile/current"
 alias redis103="telnet nrhrho103 6379"
 alias redis203="telnet nrhrho203 6379"
 
+# VPN STUFF
+alias kill_racoon="sudo launchctl stop com.apple.racoon"
 
 # misc
 alias teamcity='cd /Applications/TeamCity/bin/;sh runAll.sh start'

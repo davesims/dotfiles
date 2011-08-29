@@ -2,4 +2,7 @@ Host github-dave.com
   HostName github.com
   User git
   IdentityFile ~/.ssh/github_davsims_rsa
+Host davesims.my.lsqa.net
+  HostName 10.178.18.121
+  User myqa
 
