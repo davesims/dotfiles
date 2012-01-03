@@ -22,9 +22,7 @@ export SDK_DIR=/Library/android-sdk-mac_86
 export MANPATH=/opt/local/share/man:$MANPATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-# command line fu
-# export PS1="\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]$ "
-# export PS1='\[\e[1;37m\][\[\e[1;35m\]\u\[\e[1;37m\]@\[\e[1;32m\]\h\[\e[1;37m\]:\[\e[1;36m\]\w\[\e[1;33m\]$(parse_git_branch)\[\e[1;37m\]]$ \[\e[0m\]'
+
 # default editor
 export EDITOR="mate -w"
 
