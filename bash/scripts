@@ -10,6 +10,25 @@ NC='\e[0m'
 # ${CYAN} - DISPLAY on ${RED}$DISPLAY${NC}\n"
 date
 
+# git auto completion
+if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash  ]; then
+  . `brew --prefix`/etc/bash_completion.d/git-completion.bash 
+fi
+
+# function to display whether there are uncommitted changes or not
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+
+#show branch in prompt
+export PS1='\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]:\[\033[0;31m\]$(__git_ps1 "%s$(parse_git_dirty)")\[\033[01;34m\]$\[\033[00m\] '
+
+# export PS1="\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]:$(__git_ps1 "%s$(parse_git_dirty)")$ "
+
+
+# deals android stuff
+function layout() { touch "/Users/davesims/projects/deals_android/res/layout/$@.xml" ;}
+
 # color diffs for SVN
 function sdiff () {
  if [ "$1" != "" ]; then

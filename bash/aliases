@@ -8,9 +8,6 @@ alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy"
 # tcp
 alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
 
-# living social stuff
-alias andwww="mate /Users/davesims/projects/deals_android/assets/www/"
-
 alias home='cd ~/'
 alias h='history'
 alias tu='top -o cpu'
@@ -20,6 +17,9 @@ alias dotfiles='mate -w ~/bin/dotfiles'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
 alias pr="ping -q -i 60 svn.livingsocial.com &"
 alias sandbox="cd /Users/davesims/Documents/workspace/sandbox/src"
+
+# teamcity
+alias teamcity='ssh dsims@teamcity.lsqa.net'
 
 # mac
 alias preview="/Applications/Preview.app/Contents/MacOS/preview"
@@ -75,42 +75,31 @@ alias mysql_start='/usr/local/Cellar/mysql/5.5.14/bin/mysqld_safe'
 #davemain slice
 alias davemain='ssh davesims@davemain'
 
-# deals
+# general mobile 
+alias run_weinre='open /Applications/weinre-mac/weinre.app; nohup show 8081 </dev/null &>/dev/null &' # run weinre server if it's not already, and show it at 8081 over showoff.io
+
+# deals/android
+alias abe='cd ~/projects/deals_android && rm -rf build && ant debug && adb -e uninstall com.livingsocial.www && adb -e install ./build/deals-release.apk'
+alias abd='cd ~/projects/deals_android && rm -rf build && ant release && adb -d uninstall com.livingsocial.www && adb -d install ./build/deals-release.apk'
+
 alias android_log="adb -e logcat"
+alias android_log_device="adb -d logcat"
 alias deals_gems="cd /Users/davesims/.rvm/gems/ree-1.8.7-2011.03@deals/gems"
 alias deals_db="mysql -u root deals_development"
 alias deals="cd ~/projects/deals"
 alias deals_android="cd ~/projects/deals_android"
 alias myqa="ssh davesims.my.lsqa.net"
+alias monkey="adb -d shell monkey -p com.livingsocial.www \$2"
 
-# android
-alias emu='emulator -avd deals_2.2 -partition-size 128'
-
-# rho
-alias iphone_db='cd ~/Library/Application\ Support/iPhone\ Simulator/4.2/Applications/'
-alias rrs='rake rhosync:start'
-alias rip='rake run:iphone; tail -f *.txt'
-alias ran='rake run:android; adb -e logcat APP:I *:S'
-alias rad="rake run:android:device; adb -d logcat APP:I *:S"
-alias radd="rake run:android:device; adb -d logcat"
-alias rci='rake clean:iphone; rake run:iphone'
-alias rca='rake clean:android'
-alias iphone_browser='open -a /Applications/FireFox.app http://localhost:8080/app'
-alias android_browser='adb -e forward tcp:8888 tcp:8080; open -a /Applications/Safari.app http://localhost:8888/app'
-alias ael="adb -e logcat APP:I *:S"
-alias adl="adb -d logcat APP:I *:S"
-alias install_android="adb -d install -r ~/projects/InsiteMobile-rhodes/bin/target/InSite_signed.apk"
-alias push_deploy="git push dev onsite_master; cap deploy:update"
-alias onsite_merge="git co onsite_master; git merge master; git co master"
-alias omg="git push dev master; git co onsite_master; git merge master; git push dev onsite_master; git co master; cap deploy:update"
-alias current="cd /var/www/InsiteMobile/current"
-alias redis103="telnet nrhrho103 6379"
-alias redis203="telnet nrhrho203 6379"
+alias due='adb -e uninstall com.livingsocial.www'
+alias dud='adb -d uninstall com.livingsocial.www'
+alias die='adb -e install ~/projects/deals_android/build/production/deals-release.apk '
+alias did='adb -d install ~/projects/deals_android/deals.apk '
+alias emu_22='emulator -avd deals_2.2 -partition-size 256'
+alias da="cd ~/projects/deals_android"
+alias er="ant emu; adb install -r ./build/production/deals-release.apk; adb shell am start -n 'com.livingsocial.www/com.livingsocial.www.LivingSocial'"
+alias add='adb -d install -r ./build/production/deals-release.apk; adb -d shell am start -n "com.livingsocial.www/com.livingsocial.www.LivingSocialHomePage"'
 
 # VPN STUFF
 alias kill_racoon="sudo launchctl stop com.apple.racoon"
-
-# misc
-alias teamcity='cd /Applications/TeamCity/bin/;sh runAll.sh start'
-alias fisheye="cd /Users/davesims/Sites/fecru-2.6.0/bin; sh run.sh"
-alias stop_fisheye="cd /Users/davesims/Sites/fecru-2.6.0/bin; sh stop.sh"
+alias start_racoon="sudo launchctl start com.apple.racoon"
