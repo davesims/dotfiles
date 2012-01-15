@@ -3,7 +3,7 @@ alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
 alias rm='rm -i'
 alias hosts="mate /etc/hosts"
-alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy"
+alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy && echo '' && pbpaste && echo ''"
 
 # tcp
 alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
@@ -66,6 +66,21 @@ alias sg='./script/generate'
 alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database.."; rake db:test:purge; echo "Preparing test database.."; rake db:test:prepare'
 alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
 
+# pilfered from danmayer
+alias tlf="tail -f"
+alias ln='ln -v'
+alias mkdir='mkdir -p'
+alias ...='../..'
+alias l='ls'
+alias ll='ls -al'
+alias lh='ls -Alh'
+alias -g G='| grep'
+alias M='| less'
+alias L='| wc -l'
+alias ONE="| awk '{ print \$1}'"
+alias flushdns="dscacheutil -flushcache"
+alias dnsflush="dscacheutil -flushcache"
+
 #redis
 alias redis_log='tail -F /var/log/redis.log'
 
@@ -94,7 +109,7 @@ alias monkey="adb -d shell monkey -p com.livingsocial.www \$2"
 alias due='adb -e uninstall com.livingsocial.www'
 alias dud='adb -d uninstall com.livingsocial.www'
 alias die='adb -e install ~/projects/deals_android/build/production/deals-release.apk '
-alias did='adb -d install ~/projects/deals_android/deals.apk '
+alias did='adb -d install ~/projects/deals_android/build/production/deals-release.apk '
 alias emu_22='emulator -avd deals_2.2 -partition-size 256'
 alias da="cd ~/projects/deals_android"
 alias er="ant emu; adb install -r ./build/production/deals-release.apk; adb shell am start -n 'com.livingsocial.www/com.livingsocial.www.LivingSocial'"
