@@ -23,9 +23,6 @@ function parse_git_dirty {
 #show branch in prompt
 export PS1='\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]:\[\033[0;31m\]$(__git_ps1 "%s$(parse_git_dirty)")\[\033[01;34m\]$\[\033[00m\] '
 
-# deals android stuff
-function layout() { touch "/Users/davesims/projects/deals_android/res/layout/$@.xml" ;}
-
 # color diffs for SVN
 function sdiff () {
  if [ "$1" != "" ]; then
@@ -104,3 +101,5 @@ function ii()   # Get current host related info.
     echo -e "\n${RED}Open connections :$NC "; netstat -pan --inet;
     echo
 }
+
+. ~/bin/dotfiles/local/local_scripts

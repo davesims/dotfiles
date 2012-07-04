@@ -4,6 +4,22 @@ alias ls='ls -lah'
 alias rm='rm -i'
 alias hosts="mate /etc/hosts"
 alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy && echo '' && pbpaste && echo ''"
+alias userlist='cat /etc/passwd |grep "/bin/bash" |grep "[5-9][0-9][0-9]" |cut -d: -f1'
+
+# pilfered from danmayer
+alias tlf="tail -f"
+alias ln='ln -v'
+alias mkdir='mkdir -p'
+alias ...='../..'
+alias l='ls'
+alias ll='ls -al'
+alias lh='ls -Alh'
+alias G='| grep'
+alias M='| less'
+alias L='| wc -l'
+alias ONE="| awk '{ print \$1}'"
+alias flushdns="dscacheutil -flushcache"
+alias dnsflush="dscacheutil -flushcache"
 
 # tcp
 alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
@@ -15,11 +31,6 @@ alias tm='top -o -vsize'
 alias reload='source ~/.bashrc'
 alias dotfiles='mate -w ~/bin/dotfiles'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
-alias pr="ping -q -i 60 svn.livingsocial.com &"
-alias sandbox="cd /Users/davesims/Documents/workspace/sandbox/src"
-
-# teamcity
-alias teamcity='ssh dsims@teamcity.lsqa.net'
 
 # mac
 alias preview="/Applications/Preview.app/Contents/MacOS/preview"
@@ -38,16 +49,7 @@ alias launchd_logs="tail -f /var/log/launchd*.log"
 
 # git
 alias glog='git log --pretty=oneline --color'
-alias gpush='git push origin master'
-alias gpull='git push origin master'
 alias gl='git log --stat --color'
-
-# svn
-alias status='svn status'
-alias saa='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
-alias sra='svn status | grep "^\!" | awk "{print \$2}" | xargs svn remove'
-alias up='svn up'
-alias sfl="svn log | grep -B 6 -A 6 $1"
 
 # apache
 alias apache_conf='mate /etc/apache2/httpd.conf'
@@ -60,26 +62,14 @@ alias gems='cd /Library/Ruby/Gems/1.8/gems'
 alias gemdocs='gem server & open -a /Applications/FireFox.app http://localhost:8808'
 
 # rails
-alias ss='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; script/server'
-alias sc='./script/console'
+alias ss='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; bundle exec ruby script/server'
+alias fs='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; bundle exec foreman start'
+alias sc='bundle exec ruby script/console'
+alias rc='bundle exec rails console'
 alias sg='./script/generate'
 alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database.."; rake db:test:purge; echo "Preparing test database.."; rake db:test:prepare'
 alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
-
-# pilfered from danmayer
-alias tlf="tail -f"
-alias ln='ln -v'
-alias mkdir='mkdir -p'
-alias ...='../..'
-alias l='ls'
-alias ll='ls -al'
-alias lh='ls -Alh'
-alias -g G='| grep'
-alias M='| less'
-alias L='| wc -l'
-alias ONE="| awk '{ print \$1}'"
-alias flushdns="dscacheutil -flushcache"
-alias dnsflush="dscacheutil -flushcache"
+alias poller="ruby script/resque_poller -v --queues='iphone'"
 
 #redis
 alias redis_log='tail -F /var/log/redis.log'
@@ -92,29 +82,29 @@ alias davemain='ssh davesims@davemain'
 
 # general mobile 
 alias run_weinre='open /Applications/weinre-mac/weinre.app; nohup show 8081 </dev/null &>/dev/null &' # run weinre server if it's not already, and show it at 8081 over showoff.io
+alias hv="nohup hierarchyviewer &"
 
-# deals/android
-alias abe='cd ~/projects/deals_android && rm -rf build && ant debug && adb -e uninstall com.livingsocial.www && adb -e install ./build/deals-release.apk'
-alias abd='cd ~/projects/deals_android && rm -rf build && ant release && adb -d uninstall com.livingsocial.www && adb -d install ./build/deals-release.apk'
+# emulators
+alias ics="nohup emulator @ics -partition-size 512 &"
 
-alias android_log="adb -e logcat"
-alias android_log_device="adb -d logcat"
-alias deals_gems="cd /Users/davesims/.rvm/gems/ree-1.8.7-2011.03@deals/gems"
-alias deals_db="mysql -u root deals_development"
-alias deals="cd ~/projects/deals"
-alias deals_android="cd ~/projects/deals_android"
-alias myqa="ssh davesims.my.lsqa.net"
-alias monkey="adb -d shell monkey -p com.livingsocial.www \$2"
+alias ale="adb -e logcat"
+alias ald="adb -d logcat"
 
-alias due='adb -e uninstall com.livingsocial.www'
-alias dud='adb -d uninstall com.livingsocial.www'
-alias die='adb -e install ~/projects/deals_android/build/production/deals-release.apk '
-alias did='adb -d install ~/projects/deals_android/build/production/deals-release.apk '
-alias emu_22='emulator -avd deals_2.2 -partition-size 256'
-alias da="cd ~/projects/deals_android"
-alias er="ant emu; adb install -r ./build/production/deals-release.apk; adb shell am start -n 'com.livingsocial.www/com.livingsocial.www.LivingSocial'"
-alias add='adb -d install -r ./build/production/deals-release.apk; adb -d shell am start -n "com.livingsocial.www/com.livingsocial.www.LivingSocialHomePage"'
+# postgres
+alias pg_status="pg_ctl -D /usr/local/var/postgres status"
+alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+
 
 # VPN STUFF
 alias kill_racoon="sudo launchctl stop com.apple.racoon"
 alias start_racoon="sudo launchctl start com.apple.racoon"
+
+# svn
+alias status='svn status'
+alias saa='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+alias sra='svn status | grep "^\!" | awk "{print \$2}" | xargs svn remove'
+alias up='svn up'
+alias sfl="svn log | grep -B 6 -A 6 $1"
+
+. ~/bin/dotfiles/local/local_aliases

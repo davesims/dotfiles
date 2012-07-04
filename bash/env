@@ -8,16 +8,16 @@ export PATH=${PATH}:/Library/Ruby/Gems/1.8/gems/soap4r-1.5.8/bin
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
 
-
-########### MY.LSQA.NET ############
-export MYQA_INSTANCE=151
-export MYQA_API_KEY=NyPb6rXC7PEPTRAIYhNO
-
 ######### ENV #########
 export JAVA_HOME=/Library/Java/Home
 export ANDROID_HOME=/Library/android-sdk-mac_x86
 export ANT_HOME=/opt/local/bin/ant
 export SDK_DIR=/Library/android-sdk-mac_86
+
+# Go
+export GOROOT=/usr/local/go/
+export PATH=$PATH:$GOROOT/bin
+
 # MacPorts Installer addition on 2009-08-10_at_12:52:35: adding an appropriate MANPATH variable for use with MacPorts.
 export MANPATH=/opt/local/share/man:$MANPATH
 export CLICOLOR=1
@@ -31,14 +31,12 @@ export HISTCONTROL=erasedups # don't store duplicate lines
 export HISTSIZE=100000 #remember 100k unique lines
 shopt -s histappend
 
-# LS STUFF:
-
 # This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
 # You only want this if you are on Snow Leopard
 export ARCHFLAGS='-arch x86_64'
 export ANT_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=256m"
 
-# REE for LivingSocial
+# REE settings
 export RUBY_HEAP_FREE_MIN=1024
 export RUBY_HEAP_MIN_SLOTS=4000000
 export RUBY_HEAP_SLOTS_INCREMENT=250000
@@ -47,5 +45,5 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
-
+. ~/bin/dotfiles/local/local_env
 
