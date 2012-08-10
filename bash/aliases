@@ -5,6 +5,7 @@ alias rm='rm -i'
 alias hosts="mate /etc/hosts"
 alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy && echo '' && pbpaste && echo ''"
 alias userlist='cat /etc/passwd |grep "/bin/bash" |grep "[5-9][0-9][0-9]" |cut -d: -f1'
+alias tail="tail -f"
 
 # pilfered from danmayer
 alias tlf="tail -f"
@@ -39,10 +40,10 @@ alias ff="open -a /Applications/FireFox.app"
 
 # nginx
 alias nginx_config="mate /Library/LaunchDaemons/org.nginx.nginx.plist"
-alias launch_nginx="sudo launchctl load -w /Library/LaunchDaemons/org.nginx.nginx.plist"
-alias unload_nginx="sudo launchctl unload /Library/LaunchDaemons/org.nginx.nginx.plist"
+alias launch_nginx="sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
+alias unload_nginx="sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
 alias kill_nginx="sudo launchctl stop org.nginx.nginx"
-alias nginx_logs="tail -f /usr/local/Cellar/nginx/1.0.5/logs/*"
+alias nginx_logs="tail -f /usr/local/Cellar/nginx/1.2.1/logs/*"
 
 # launchd
 alias launchd_logs="tail -f /var/log/launchd*.log"
