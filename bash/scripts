@@ -6,13 +6,15 @@ cyan='\e[0;36m'
 CYAN='\e[1;36m'
 NC='\e[0m'
 
+eval "$(rbenv init -)"
+
 # echo -e "${CYAN}This is BASH ${RED}${BASH_VERSION%.*}\
 # ${CYAN} - DISPLAY on ${RED}$DISPLAY${NC}\n"
 date
 
 # git auto completion
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash  ]; then
-  . `brew --prefix`/etc/bash_completion.d/git-completion.bash 
+if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
+. `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 
 # function to display whether there are uncommitted changes or not
