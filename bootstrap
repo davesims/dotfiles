@@ -6,6 +6,7 @@ ln -s ~/bin/dotfiles/ruby/pryrc ~/.pryrc
 ln -s ~/bin/dotfiles/ruby/gemrc ~/.gemrc
 ln -s ~/bin/dotfiles/git/config ~/.gitconfig
 ln -s ~/bin/dotfiles/vim/vimrc ~/.vimrc
+ln -s ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
 mkdir ~/.ssh
 ln -s ~/bin/dotfiles/ssh/config ~/.ssh/config
 
