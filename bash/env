@@ -5,7 +5,6 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=${PATH}:/Library/android-sdk-mac_x86/tools
 export PATH=${PATH}:/Library/android-sdk-mac_x86/platform-tools
-export PATH=${PATH}:/Library/Ruby/Gems/1.8/gems/soap4r-1.5.8/bin
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=$PATH:/Users/davesims/.rbenv/bin
