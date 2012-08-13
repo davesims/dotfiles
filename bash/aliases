@@ -1,3 +1,6 @@
+# boot up new dotfile symlinks
+alias bootstrapdotfiles='. ~/bin/dotfiles/bootstrap'
+
 # system conweeniences
 alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
@@ -30,7 +33,7 @@ alias h='history'
 alias tu='top -o cpu'
 alias tm='top -o -vsize'
 alias reload='source ~/.bashrc'
-alias dotfiles='mate -w ~/bin/dotfiles'
+alias dotfiles='mvim ~/bin/dotfiles'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
 
 # mac

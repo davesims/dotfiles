@@ -1,13 +1,14 @@
 # run this once after pulling dotfiles to ~/bin/dotfiles
 cp  ~/bin/dotfiles/home.bashrc ~/.bashrc
 cp  ~/bin/dotfiles/bash_profile ~/.bash_profile
-ln -s ~/bin/dotfiles/ruby/irbrc ~/.irbrc
-ln -s ~/bin/dotfiles/ruby/pryrc ~/.pryrc
-ln -s ~/bin/dotfiles/ruby/gemrc ~/.gemrc
-ln -s ~/bin/dotfiles/git/config ~/.gitconfig
-ln -s ~/bin/dotfiles/vim/vimrc ~/.vimrc
-ln -s ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
+ln -nfs ~/bin/dotfiles/ruby/irbrc ~/.irbrc
+ln -nfs ~/bin/dotfiles/ruby/pryrc ~/.pryrc
+ln -nfs ~/bin/dotfiles/ruby/gemrc ~/.gemrc
+ln -nfs ~/bin/dotfiles/git/config ~/.gitconfig
+ln -nfs ~/bin/dotfiles/vim/vimrc ~/.vimrc
+ln -nfs ~/bin/dotfiles/vim ~/.vim
+ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
 mkdir ~/.ssh
-ln -s ~/bin/dotfiles/ssh/config ~/.ssh/config
+ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
 
 # sudo ln -F /System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc /usr/bin
