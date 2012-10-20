@@ -27,6 +27,9 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # default editor
 export EDITOR="mate -w"
 
+# python stuff to make meld work
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages/
+
 # history options
 export HISTCONTROL=erasedups # don't store duplicate lines
 export HISTSIZE=100000 #remember 100k unique lines
