@@ -10,6 +10,9 @@ alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy &
 alias userlist='cat /etc/passwd |grep "/bin/bash" |grep "[5-9][0-9][0-9]" |cut -d: -f1'
 alias tail="tail -f"
 
+# ps-fu
+alias pscpu='ps -arwwwxo "%cpu pid %mem command" | head -13'
+
 # pilfered from danmayer
 alias tlf="tail -f"
 alias ln='ln -v'
@@ -110,5 +113,8 @@ alias saa='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
 alias sra='svn status | grep "^\!" | awk "{print \$2}" | xargs svn remove'
 alias up='svn up'
 alias sfl="svn log | grep -B 6 -A 6 $1"
+
+# kill stuff
+alias killsso="kill -9 $(ps aux | grep '[s]so' | awk '{print $2}')"
 
 . ~/bin/dotfiles/local/local_aliases
