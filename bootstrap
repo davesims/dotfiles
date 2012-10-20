@@ -10,5 +10,9 @@ ln -nfs ~/bin/dotfiles/vim ~/.vim
 ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
 mkdir ~/.ssh
 ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
+mkdir ~/bin/dotfiles/local
+touch ~/bin/dotfiles/local/local_aliases
+touch ~/bin/dotfiles/local/local_env
+touch ~/bin/dotfiles/local/local_scripts
 
 # sudo ln -F /System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc /usr/bin
