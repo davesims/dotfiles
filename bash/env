@@ -1,5 +1,4 @@
 ########### PATH ###########
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=~/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
@@ -7,13 +6,26 @@ export PATH=${PATH}:/Library/android-sdk-mac_x86/tools
 export PATH=${PATH}:/Library/android-sdk-mac_x86/platform-tools
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
-export PATH=$PATH:/Users/davesims/.rbenv/bin
+
+########### MAN COLOR ######
+export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m' # begin bold
+export LESS_TERMCAP_me=$'\E[0m' # end mode
+export LESS_TERMCAP_se=$'\E[0m' # end standout-mode
+export LESS_TERMCAP_so=$'\E[1;31m' # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m' # end underline
+export LESS_TERMCAP_us=$'\E[04;33;5;146m' # begin underline
 
 ######### ENV #########
 export JAVA_HOME=/Library/Java/Home
 export ANDROID_HOME=/Library/android-sdk-mac_x86
 export ANT_HOME=/opt/local/bin/ant
 export SDK_DIR=/Library/android-sdk-mac_86
+
+######### RBENV ###########
+export RBENV_ROOT=/usr/local/Cellar/rbenv
+export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
+export RBENV_VERSION=ree-1.8.7-2012.02
 
 # Go
 export GOROOT=/usr/local/go/
@@ -46,6 +58,9 @@ export RUBY_HEAP_MIN_SLOTS=4000000
 export RUBY_HEAP_SLOTS_INCREMENT=250000
 export RUBY_GC_MALLOC_LIMIT=500000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+
+# JRUBY settings
+export JRUBY_OPTS=--1.9
 
 . ~/bin/dotfiles/local/local_env
 

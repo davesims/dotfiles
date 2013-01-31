@@ -1,5 +1,3 @@
-# boot up new dotfile symlinks
-alias bootstrapdotfiles='. ~/bin/dotfiles/bootstrap'
 
 # system conweeniences
 alias ip='ifconfig | grep inet'
@@ -73,6 +71,7 @@ alias ss='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset
 alias fs='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; bundle exec foreman start'
 alias sc='bundle exec ruby script/console'
 alias rc='bundle exec rails console'
+alias rdbc='bundle exec rails dbconsole'
 alias sg='./script/generate'
 alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database.."; rake db:test:purge; echo "Preparing test database.."; rake db:test:prepare'
 alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
@@ -85,7 +84,7 @@ alias redis_log='tail -F /var/log/redis.log'
 alias mysql_start='/usr/local/Cellar/mysql/5.5.14/bin/mysqld_safe'
 
 #davemain slice
-alias davemain='ssh davesims@davemain'
+alias davemain='ssh dave@davemain'
 
 # general mobile 
 alias run_weinre='open /Applications/weinre-mac/weinre.app; nohup show 8081 </dev/null &>/dev/null &' # run weinre server if it's not already, and show it at 8081 over showoff.io
