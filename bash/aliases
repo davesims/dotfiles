@@ -8,6 +8,8 @@ alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy &
 alias userlist='cat /etc/passwd |grep "/bin/bash" |grep "[5-9][0-9][0-9]" |cut -d: -f1'
 alias tail="tail -f"
 alias t="tmux -u"
+alias speedtest="curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
+
 # ps-fu
 alias pscpu='ps -arwwwxo "%cpu pid %mem command" | head -13'
 
@@ -34,7 +36,7 @@ alias h='history'
 alias tu='top -o cpu'
 alias tm='top -o -vsize'
 alias reload='source ~/.bashrc'
-alias dotfiles='mvim ~/bin/dotfiles'
+alias dotfiles='vim ~/bin/dotfiles'
 alias ea="mate -w ~/bin/dotfiles/bash/aliases && reload"
 
 # mac
@@ -115,5 +117,9 @@ alias sfl="svn log | grep -B 6 -A 6 $1"
 
 # kill stuff
 alias killsso="kill -9 $(ps aux | grep '[s]so' | awk '{print $2}')"
+
+# pointless
+alias starwars="telnet towel.blinkenlights.nl"
+alias dwarf="~/Games/df_osx/df"
 
 . ~/bin/dotfiles/local/local_aliases
