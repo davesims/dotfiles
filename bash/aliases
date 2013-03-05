@@ -121,5 +121,6 @@ alias killsso="kill -9 $(ps aux | grep '[s]so' | awk '{print $2}')"
 # pointless
 alias starwars="telnet towel.blinkenlights.nl"
 alias dwarf="~/Games/df_osx/df"
+alias hn="w3m -cookie hackerne.ws"
 
 . ~/bin/dotfiles/local/local_aliases
