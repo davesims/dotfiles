@@ -7,12 +7,16 @@ alias hosts="mate /etc/hosts"
 alias outside_ip="curl http://automation.whatismyip.com/n09230945.asp | pbcopy && echo '' && pbpaste && echo ''"
 alias userlist='cat /etc/passwd |grep "/bin/bash" |grep "[5-9][0-9][0-9]" |cut -d: -f1'
 alias tail="tail -f"
-alias t="tmux -u"
 alias speedtest="curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
+alias reset_audio="sudo killall coreaudio"
 
 # ps-fu
 alias pscpu='ps -arwwwxo "%cpu pid %mem command" | head -13'
 
+# todo-txt
+alias t='todo.sh -d ~/.todo/config'
+
+alias todo="vim ~/Dropbox/todo.txt"
 # pilfered from danmayer
 alias tlf="tail -f"
 alias ln='ln -v'
@@ -93,7 +97,7 @@ alias run_weinre='open /Applications/weinre-mac/weinre.app; nohup show 8081 </de
 alias hv="nohup hierarchyviewer &"
 
 # emulators
-alias ics="nohup emulator @ics -partition-size 512 &"
+alias ics="emulator @ics -partition-size 512 "
 
 alias ale="adb -e logcat"
 alias ald="adb -d logcat"
@@ -122,5 +126,6 @@ alias killsso="kill -9 $(ps aux | grep '[s]so' | awk '{print $2}')"
 alias starwars="telnet towel.blinkenlights.nl"
 alias dwarf="~/Games/df_osx/df"
 alias hn="w3m -cookie hackerne.ws"
+alias why="wget whytheluckystiff.net/SPOOL/DESOLEE"
 
 . ~/bin/dotfiles/local/local_aliases
