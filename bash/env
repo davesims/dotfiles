@@ -6,8 +6,13 @@ export PATH=${PATH}:/Library/android-sdk-mac_x86/tools
 export PATH=${PATH}:/Library/android-sdk-mac_x86/platform-tools
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:.
 
-########### MAN COLOR ######
+# for todo-txt
+export PATH=$PATH:"/path/to/your/todo/scripts"
+export TODOTXT_DEFAULT_ACTION=ls
+
+########## MAN COLOR ######
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m' # begin bold
 export LESS_TERMCAP_me=$'\E[0m' # end mode
@@ -25,7 +30,6 @@ export SDK_DIR=/Library/android-sdk-mac_86
 ######### RBENV ###########
 export RBENV_ROOT=/usr/local/Cellar/rbenv
 export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
-export RBENV_VERSION=ree-1.8.7-2012.02
 
 # Go
 export GOROOT=/usr/local/go/
@@ -37,7 +41,8 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # default editor
-export EDITOR="mate -w"
+export EDITOR="vim"
+export VISUAL="vim"
 
 # python stuff to make meld work
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages/
