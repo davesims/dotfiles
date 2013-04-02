@@ -2,6 +2,7 @@
 " Copy or symlink to ~/.vimrc or ~/_vimrc.
 
 set nocompatible                  " Must come first because it changes other options.
+set autoread
 
 execute pathogen#infect()
 
@@ -15,8 +16,18 @@ let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 let g:syntastic_disabled_filetypes = ['java']
 
-:nmap <C-S-tab> :tabprevious<cr>
-:nmap <C-tab> :tabnext<cr>
+" Make the git gutter transparent (and any other gutter plugins)
+au VimEnter * highlight clear SignColumn
+
+" No backups, swapfiles, etc. 
+set nobackup
+set nowb
+set noswapfile
+
+" tab nav conweeniences
+map <C-t> :tabnew<CR><Esc>
+map <C-s> :tabprevious<CR><Esc>
+map <C-w> :tabnext<CR><Esc>
 
 colorscheme desert
 
@@ -58,8 +69,8 @@ set grepprg=ack
 set efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
 
 " UNCOMMENT TO USE
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
+set tabstop=4                    " Global tab width.
+set shiftwidth=4                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
