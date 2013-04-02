@@ -39,6 +39,11 @@ function sdiff () {
  fi
 }
 
+function take () {
+    mkdir $1
+    cd $1
+}
+
 function gdiff () {
  if [ "$1" != "" ]; then
     git diff $@ | colordiff;
