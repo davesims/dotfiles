@@ -1,0 +1,5 @@
+windows: 
+    - name: "ringleader"
+      root: '~/projects/deals'
+      panes:
+        - cmd: "rl"

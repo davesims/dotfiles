@@ -1,0 +1,12 @@
+session:
+    name: "dev"
+    windows: 
+        - name: "android_dev"
+          root: '~/projects/deals_android'
+          panes:
+            - cmd: "vim ."
+              focus: true
+            - cmd: "pwd"
+              width: 40
+            - cmd: "pwd"
+              height: 50 

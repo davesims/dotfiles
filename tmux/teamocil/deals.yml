@@ -1,0 +1,12 @@
+session:
+    name: "dev"
+    windows: 
+        - name: "deals"
+          root: '~/projects/deals'
+          panes:
+            - cmd: "vim ."
+              focus: true
+            - cmd: "tail -f log/*"
+              width: 40
+            - cmd: "t ls"
+              height: 50 

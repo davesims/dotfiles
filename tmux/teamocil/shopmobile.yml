@@ -1,0 +1,12 @@
+session:
+    name: "dev"
+    windows: 
+        - name: "shopmobile"
+          root: '~/projects/shopmobile'
+          panes:
+            - cmd: "vim ."
+              focus: true
+            - cmd: "tail -f log/*"
+              width: 40
+            - cmd: "t ls"
+              height: 50 
