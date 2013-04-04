@@ -6,7 +6,7 @@ session:
           panes:
             - cmd: "vim ."
               focus: true
-            - cmd: "pwd"
+            - cmd: "cd ."
               width: 40
-            - cmd: "pwd"
+            - cmd: "t ls"
               height: 50 
