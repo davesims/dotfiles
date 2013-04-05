@@ -13,6 +13,10 @@ alias reset_audio="sudo killall coreaudio"
 # ps-fu
 alias pscpu='ps -arwwwxo "%cpu pid %mem command" | head -13'
 
+# memcached
+alias flush_memcached="echo 'flush_all' | netcat localhost 11211"
+alias memcached_console="netcat localhost 11211"
+
 # todo-txt
 alias t='todo.sh -d ~/.todo/config'
 
