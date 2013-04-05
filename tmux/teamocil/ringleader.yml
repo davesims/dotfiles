@@ -1,5 +1,7 @@
-windows: 
-    - name: "ringleader"
-      root: '~/projects/deals'
-      panes:
-        - cmd: "rl"
+session:
+    name: "dev"
+    windows: 
+        - name: "ringleader"
+          root: '~/projects/deals'
+          panes:
+            - cmd: "rl"
