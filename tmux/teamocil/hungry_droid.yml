@@ -1,0 +1,12 @@
+session:
+    name: "dev"
+    windows: 
+        - name: "hungry_droid"
+          root: '~/projects/hungry_droid'
+          panes:
+            - cmd: "vim ."
+              focus: true
+            - cmd: "cd ."
+              width: 40
+            - cmd: "t ls"
+              height: 50 

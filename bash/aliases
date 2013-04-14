@@ -19,8 +19,8 @@ alias memcached_console="netcat localhost 11211"
 
 # todo-txt
 alias t='todo.sh -d ~/.todo/config'
-
 alias todo="vim ~/Dropbox/todo.txt"
+
 # pilfered from danmayer
 alias tlf="tail -f"
 alias ln='ln -v'
@@ -39,6 +39,10 @@ alias dnsflush="dscacheutil -flushcache"
 # tcp
 alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
 
+# teamocil
+alias tmc="teamocil \$2"
+
+# misc
 alias home='cd ~/'
 alias h='history'
 alias tu='top -o cpu'

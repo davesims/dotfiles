@@ -1,0 +1,12 @@
+session:
+    name: "dev"
+    windows: 
+        - name: "checkout"
+          root: '~/projects/checkout'
+          panes:
+            - cmd: "vim ."
+              focus: true
+            - cmd: "tail -f log/*"
+              width: 40
+            - cmd: "t ls"
+              height: 50 
