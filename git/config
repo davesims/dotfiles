@@ -15,6 +15,12 @@
 	ui = true
 [push]
 	default = tracking
+[pack]
+	threads = 4
+[diff]
+	tool = meld
+[merge]
+	tool = meld
 [alias]
         co = checkout
         ci = commit -v
@@ -83,16 +89,3 @@
       	#dirstatus = !ls -d1 */.git | xargs -n1 -i{} sh -c \"cd {}/.. && echo Checking {} && git ls-files --exclude-standard -tousmd\"
 
 
-[giggle]
-	compact-mode = false
-	main-window-maximized = false
-	main-window-geometry = 1400x1050+0+0
-	history-view-vpane-position = 355
-	main-window-view = HistoryView
-	file-view-vpane-position = 491
-[pack]
-	threads = 4
-[diff]
-	tool = meld
-[merge]
-	tool = meld
