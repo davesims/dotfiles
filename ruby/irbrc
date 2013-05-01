@@ -1,29 +1,37 @@
 puts "loading irbrc..."
 start_load = Time.now
-require 'rubygems'
-require 'irb/completion'
-
 # require 'map_by_method' # this adds a good 3-4 seconds to irb load
-require 'what_methods'
-require 'irb/ext/save-history'
-require 'pp'
-require 'ap'
-require 'wirble'
-require 'hirb'
-load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
-
-ActiveRecord::Base.logger = Logger.new(STDOUT)
-
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 IRB.conf[:AUTO_INDENT] = true
+
+['rubygems',
+ 'irb/ext/save-history',
+ 'irb/completion',
+ 'what_methods',
+ 'ap',
+ 'wirble',
+ 'hirb'].each do |gem|
+  begin
+    require gem
+  rescue
+    puts "You haven't installed #{gem}"
+  end
+end
+
+load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
+
+# puts "setting rails logger..."
+# ActiveRecord::Base.logger = Logger.new(STDOUT)
+
 
 Wirble.init
 Wirble.colorize
 
 Hirb.enable
 extend Hirb::Console
+
 # Project-specific .irbrc 
 if Dir.pwd != File.expand_path("~")
   local_irbrc = File.expand_path '.irbrc'
@@ -46,50 +54,5 @@ ANSI[:BLUE] = "\e[34m"
 ANSI[:MAGENTA] = "\e[35m"
 ANSI[:CYAN] = "\e[36m"
 ANSI[:WHITE] = "\e[37m"
-
-class Object
-  # list methods which aren't in superclass
-  def local_methods(obj = self)
-    (obj.methods - obj.class.superclass.instance_methods).sort
-  end
-
-  def ri(method = nil)
-    unless method && method =~ /^[A-Z]/ # if class isn't specified
-      klass = self.kind_of?(Class) ? name : self.class.name
-      method = [klass, method].compact.join('#')
-    end
-    puts `ri '#{method}'`
-  end
-  
-  def print_methods(obj=self, *options) # Print methods
-    methods = obj.methods
-    methods -= Object.methods unless options.include? :more
-    filter = options.select {|opt| opt.kind_of? Regexp}.first
-    methods = methods.select {|name| name =~ filter} if filter
-
-    data = methods.sort.collect do |name|
-      method = obj.method(name)
-      if method.arity == 0
-        args = "()"
-      elsif method.arity > 0
-        n = method.arity
-        args = "(#{(1..n).collect {|i| "arg#{i}"}.join(", ")})"
-      elsif method.arity < 0
-        n = -method.arity
-        args = "(#{(1..n).collect {|i| "arg#{i}"}.join(", ")}, ...)"
-      end
-      klass = $1 if method.inspect =~ /Method: (.*?)#/
-        [name.to_s, args, klass]
-    end
-    max_name = data.collect {|item| item[0].size}.max
-    max_args = data.collect {|item| item[1].size}.max
-    data.each do |item|
-      print " #{ANSI[:YELLOW]}#{item[0].to_s.rjust(max_name)}#{ANSI[:RESET]}"
-      print "#{ANSI[:BLUE]}#{item[1].ljust(max_args)}#{ANSI[:RESET]}"
-      print " #{ANSI[:GRAY]}#{item[2]}#{ANSI[:RESET]}\n"
-    end
-    data.size
-  end
-end
 
 puts "irb loaded in #{(Time.now - start_load).to_s} sec"
