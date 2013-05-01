@@ -41,7 +41,8 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # default editor
-export EDITOR="vim"
+export VISUAL="vim"
+export GIT_EDITOR="vimdiff"
 export VISUAL="vim"
 
 # python stuff to make meld work
