@@ -26,9 +26,12 @@ set noswapfile
 
 " tab nav conweeniences
 map <C-t> :tabnew<CR><Esc>
-map <C-s> :tabprevious<CR><Esc>
-map <C-w> :tabnext<CR><Esc>
-
+map <C-s> :tabprev<CR><Esc>
+" map <C-w> :tabnext<CR><Esc>
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l 
 colorscheme desert
 
 filet plugin indent on         " Turn on file type detection.
@@ -70,8 +73,8 @@ set grepprg=ack                   " use ack instead of grep for, er, grep
 set efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
 
 " UNCOMMENT TO USE
-set tabstop=4                    " Global tab width.
-set shiftwidth=4                 " And again, related.
+set tabstop=2                    " Global tab width.
+set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
@@ -93,13 +96,6 @@ map <leader>ff :FuzzyFinderTextMate<cr>
 " Uncomment to use Jamis Buck's file opening plugin
 map <Leader>t :FuzzyFinderTextMate<Enter>
 
-" Controversial...swap colon and semicolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
-
-"vnoremap ; :
-"vnoremap : ;
-
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
@@ -107,10 +103,10 @@ map <Leader>t :FuzzyFinderTextMate<Enter>
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
+set rtp+=/Users/davesims/github/powerline/powerline/bindings/vim
+
 " tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence 
 " http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
-
-set rtp+=/Users/davesims/github/powerline/powerline/bindings/vim
 
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -122,3 +118,17 @@ endif
 
 " Use backtick instead of escape, same reason as above
 :imap ` <Esc>
+:nmap ` <Esc>
+
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" remove pipes from window borders
+:set fillchars+=vert:\ 
+
+" share yank with native clipboard
+" set clipboard=unnamed
+
