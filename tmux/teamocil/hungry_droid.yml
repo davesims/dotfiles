@@ -2,11 +2,11 @@ session:
     name: "dev"
     windows: 
         - name: "hungry_droid"
-          root: '~/projects/hungry_droid'
+          root: '~/projects/hungry-droid'
           panes:
             - cmd: "vim ."
               focus: true
-            - cmd: "cd ."
-              width: 40
+            - cmd: "cd ~/projects/hungry-droid"
+              width: 30
             - cmd: "t ls"
               height: 50 
