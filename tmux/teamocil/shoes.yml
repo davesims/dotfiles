@@ -1,0 +1,12 @@
+session:
+    name: "dev"
+    windows: 
+        - name: "shoes"
+          root: '~/github/shoes4'
+          panes:
+            - cmd: "vim ."
+              focus: true
+            - cmd: "tail -f log/*"
+              width: 30
+            - cmd: "t ls"
+              height: 50 
