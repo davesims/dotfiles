@@ -1,5 +1,6 @@
 ########### PATH ###########
 export PATH=~/bin:$PATH
+export PATH=./bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=${PATH}:/Library/android-sdk-mac_x86/tools
