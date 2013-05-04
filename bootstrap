@@ -6,6 +6,7 @@ ln -nfs ~/bin/dotfiles/ruby/irssi ~/.irssi
 ln -nfs ~/bin/dotfiles/ruby/pryrc ~/.pryrc
 ln -nfs ~/bin/dotfiles/ruby/gemrc ~/.gemrc
 ln -nfs ~/bin/dotfiles/git/config ~/.gitconfig
+ln -nfs ~/bin/dotfiles/git/gitignore_global ~/.gitignore_global
 ln -nfs ~/bin/dotfiles/vim/vimrc ~/.vimrc
 ln -nfs ~/bin/dotfiles/vim ~/.vim
 ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
