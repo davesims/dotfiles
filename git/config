@@ -1,6 +1,8 @@
 [user]
 	name = Dave Sims
 	email = davsims@gmail.com
+[pull]
+	rebase = true
 [apply]
 	whitespace = nowarn
 [core]
