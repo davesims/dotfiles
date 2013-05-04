@@ -5,3 +5,6 @@ session:
           root: '~/projects/deals'
           panes:
             - cmd: "rl"
+              focus: true
+            - cmd: "t ls"
+              width: 50 
