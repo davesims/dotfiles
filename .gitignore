@@ -1,3 +1,7 @@
 local/
 nohup.out
 vim/.netrwhist
+vim/bundle/tpope-vim-rails
+vim/bundle/msanders-snipmate.vim
+vim/bundle/tpope-vim-surround
+vim/bundle/vim-makegreen
