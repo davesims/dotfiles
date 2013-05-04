@@ -21,6 +21,9 @@ alias memcached_console="netcat localhost 11211"
 alias t='todo.sh -d ~/.todo/config'
 alias todo="vim ~/Dropbox/todo.txt"
 
+# general work stuff
+alias yesterday="find . -type f -not -path '*/.*' -ctime -1 > .yesterday && cat .yesterday &"
+
 # pilfered from danmayer
 alias tlf="tail -f"
 alias ln='ln -v'
