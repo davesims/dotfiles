@@ -1,5 +1,6 @@
 # run this once after pulling dotfiles to ~/bin/dotfiles
 cp  ~/bin/dotfiles/home.bashrc ~/.bashrc
+cp  ~/bin/dotfiles/zshrc ~/.zshrc
 cp  ~/bin/dotfiles/bash_profile ~/.bash_profile
 ln -nfs ~/bin/dotfiles/ruby/irbrc ~/.irbrc
 ln -nfs ~/bin/dotfiles/ruby/irssi ~/.irssi
