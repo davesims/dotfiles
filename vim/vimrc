@@ -114,8 +114,8 @@ else
 endif
 
 " Use backtick instead of escape, same reason as above
-:imap ` <Esc>
-:nmap ` <Esc>
+" :imap ` <Esc>
+" :nmap ` <Esc>
 
 let g:nerdtree_tabs_open_on_console_startup=1
 
