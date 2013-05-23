@@ -1,64 +1,35 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+# Load local zsh configuration
+source ~/bin/dotfiles/zsh/zsh.conf
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+######### ENV #########
+export JAVA_HOME=/Library/Java/Home
+export ANDROID_HOME=/Library/android-sdk-mac_x86
+export ANT_HOME=/opt/local/bin/ant
+export SDK_DIR=/Library/android-sdk-mac_86
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git jira gradle osx ruby rails3 rbenv capistrano ant colorize gem git-extras tmux rake rails bundler brew gem heroku)
-
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-export PATH=$PATH:/usr/local/Cellar/rbenv/shims:/usr/local/Cellar/rbenv/bin:/usr/local/Cellar/rbenv/shims:/Library/Java/Home/bin:/usr/local/sbin:/usr/local/bin:./bin:/Users/davesims/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/git/bin:/usr/local/go/bin:/usr/local/Cellar/rbenv/shims:/usr/local/Cellar/rbenv/bin:/Library/Java/Home/bin:/usr/local/sbin:./bin:/Users/davesims/bin:/Library/android-sdk-mac_x86/tools:/Library/android-sdk-mac_x86/platform-tools:/usr/local/mysql/bin:.:/path/to/your/todo/scripts:/usr/local/go//bin:/Library/android-sdk-mac_x86/tools:/Library/android-sdk-mac_x86/platform-tools:/usr/local/mysql/bin:.:/path/to/your/todo/scripts:/usr/local/go//bin
 ########### PATH ###########
+export PATH=$PATH:.
+export PATH=$PATH:./bin
+export PATH=$PATH:/bin
+export PATH=$PATH:/sbin
+export PATH=$PATH:/usr/bin
+export PATH=$PATH:/usr/sbin
+export PATH=$PATH:/usr/X11/bin
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/git/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:/usr/local/Cellar/rbenv/shims
+export PATH=$PATH:/usr/local/Cellar/rbenv/bin
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$JAVA_HOME/bin:$PATH
 export PATH=~/bin:$PATH
 export PATH=./bin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=${PATH}:/Library/android-sdk-mac_x86/tools
-export PATH=${PATH}:/Library/android-sdk-mac_x86/platform-tools
-export PATH=$JAVA_HOME/bin:$PATH
-export PATH=$PATH:/usr/local/mysql/bin
-export PATH=$PATH:.
 
 # for todo-txt
-export PATH=$PATH:"/path/to/your/todo/scripts"
+# export PATH=$PATH:"/path/to/your/todo/scripts"
 export TODOTXT_DEFAULT_ACTION=ls
 
 ########## MAN COLOR ######
@@ -70,11 +41,6 @@ export LESS_TERMCAP_so=$'\E[1;31m' # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m' # end underline
 export LESS_TERMCAP_us=$'\E[04;33;5;146m' # begin underline
 
-######### ENV #########
-export JAVA_HOME=/Library/Java/Home
-export ANDROID_HOME=/Library/android-sdk-mac_x86
-export ANT_HOME=/opt/local/bin/ant
-export SDK_DIR=/Library/android-sdk-mac_86
 
 ######### RBENV ###########
 export RBENV_ROOT=/usr/local/Cellar/rbenv
@@ -84,14 +50,13 @@ export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
 export GOROOT=/usr/local/go/
 export PATH=$PATH:$GOROOT/bin
 
-# MacPorts Installer addition on 2009-08-10_at_12:52:35: adding an appropriate MANPATH variable for use with MacPorts.
-export MANPATH=/opt/local/share/man:$MANPATH
+# CL Colors
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # default editor
 export VISUAL="vim"
-export GIT_EDITOR="vimdiff"
+export GIT_EDITOR="vim"
 export VISUAL="vim"
 
 # python stuff to make meld work
@@ -116,5 +81,6 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 # JRUBY settings
 export JRUBY_OPTS=--1.9
 
+# Load local env stuff that is kept out of VCS
 . ~/bin/dotfiles/local/local_env
 
