@@ -23,6 +23,8 @@
 	tool = meld
 [merge]
 	tool = meld
+[init]
+  templatedir = ~/bin/dotfiles/git/templates
 [alias]
         co = checkout
         ci = commit -v
