@@ -1,7 +1,7 @@
 session:
     name: "dev"
     windows: 
-        - name: "android_dev"
+        - name: "deals_android"
           root: '~/projects/deals_android'
           panes:
             - cmd: "vim ."
