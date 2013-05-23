@@ -4,6 +4,6 @@
 # commit is made.
 #
 # To enable this hook, rename this file to "post-commit".
-echo "Building CTAGS..."
-ctags -R .
+echo "Building CTAGS (global hook)..."
+`brew --prefix`/bin/ctags -R .
 echo "CTAGS built..."
