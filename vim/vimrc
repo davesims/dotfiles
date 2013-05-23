@@ -31,6 +31,10 @@ nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l 
 colorscheme desert
 
+" TagBar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_left=1
+
 filet plugin indent on         " Turn on file type detection.
 
 runtime macros/matchit.vim        " Load the matchit plugin.
@@ -114,8 +118,8 @@ else
 endif
 
 " Use backtick instead of escape, same reason as above
-" :imap ` <Esc>
-" :nmap ` <Esc>
+:imap ` <Esc>
+:nmap ` <Esc>
 
 let g:nerdtree_tabs_open_on_console_startup=1
 

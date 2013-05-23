@@ -18,6 +18,19 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+# function to display whether there are uncommitted changes or not
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+
+#show branch in prompt
+export PS1='\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]:\[\033[0;31m\]$(__git_ps1 "%s$(parse_git_dirty)")\[\033[01;34m\]$\[\033[00m\] '
+
+function _ssh_completion() {
+  perl -ne 'print "$1 " if /^[Hh]ost (.+)$/' ~/.ssh/config
+}
+complete -W "$(_ssh_completion)" ssh
+
 # notes!
 function n() {   
     $EDITOR ~/notes/"$*".txt 
@@ -27,39 +40,9 @@ function nls() {
     ls -c ~/notes/ | grep "$*" 
 }
 
-# function to display whether there are uncommitted changes or not
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
-}
-
-function _ssh_completion() {
-  perl -ne 'print "$1 " if /^[Hh]ost (.+)$/' ~/.ssh/config
-}
-complete -W "$(_ssh_completion)" ssh
-
-#show branch in prompt
-export PS1='\[\033[0;32m\]\u@\[\033[0;34m\]\h:\[\033[0;35m\]\w\[\033[0;0m\]:\[\033[0;31m\]$(__git_ps1 "%s$(parse_git_dirty)")\[\033[01;34m\]$\[\033[00m\] '
-
-# color diffs for SVN
-function sdiff () {
- if [ "$1" != "" ]; then
-    svn diff $@ | colordiff;
- else
-    svn diff | colordiff;
- fi
-}
-
 function take () {
     mkdir $1
     cd $1
-}
-
-function gdiff () {
- if [ "$1" != "" ]; then
-    git diff $@ | colordiff;
- else
-    git diff | colordiff;
- fi
 }
 
 function extract()      # Handy Extract Program.

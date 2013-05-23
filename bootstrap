@@ -1,26 +1,43 @@
-# run this once after pulling dotfiles to ~/bin/dotfiles
+####### This is the dotfiles bootstrap. 
+####### It symlinks and creates config dirs for all the things.
+####### Run this once after pulling dotfiles to ~/bin/dotfiles
+
+######### bash & zsh config-fu ##########
 cp  ~/bin/dotfiles/home.bashrc ~/.bashrc
 cp  ~/bin/dotfiles/zshrc ~/.zshrc
 cp  ~/bin/dotfiles/bash_profile ~/.bash_profile
+
+######### ruby ###########
 ln -nfs ~/bin/dotfiles/ruby/irbrc ~/.irbrc
-sudo ln -nfs ~/bin/dotfiles/git/global_hooks/post-commit /usr/local/git/share/git-core/templates/hooks/post-commit
-ln -nfs ~/bin/dotfiles/ruby/irssi ~/.irssi
 ln -nfs ~/bin/dotfiles/ruby/pryrc ~/.pryrc
 ln -nfs ~/bin/dotfiles/ruby/gemrc ~/.gemrc
+
+######### git ############
 ln -nfs ~/bin/dotfiles/git/config ~/.gitconfig
 ln -nfs ~/bin/dotfiles/git/gitignore_global ~/.gitignore_global
+
+######### vim ############
 ln -nfs ~/bin/dotfiles/vim/vimrc ~/.vimrc
 ln -nfs ~/bin/dotfiles/vim ~/.vim
+ln -nfs ~/bin/dotfiles/vim/ctags ~/.ctags
 ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
+
+######### tmux ###########
 ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -nfs ~/bin/dotfiles/tmux/teamocil ~/.teamocil
+
+######### misc ###########
+ln -nfs ~/bin/dotfiles/ruby/irssi ~/.irssi
+
 mkdir ~/.todo
 ln -nfs ~/bin/dotfiles/todo/todo.cfg ~/.todo/config
+
 mkdir ~/.ssh
 ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
+
+######### local config not to stored in VCS ########
 mkdir ~/bin/dotfiles/local
 touch ~/bin/dotfiles/local/local_aliases
 touch ~/bin/dotfiles/local/local_env
 touch ~/bin/dotfiles/local/local_scripts
 
-# sudo ln -F /System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc /usr/bin

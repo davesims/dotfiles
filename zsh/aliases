@@ -12,6 +12,7 @@ alias reset_audio="sudo killall coreaudio"
 
 # ps-fu
 alias pscpu='ps -arwwwxo "%cpu pid %mem command" | head -13'
+alias openports='lsof -i | grep ESTABLISHED'
 
 # memcached
 alias flush_memcached="echo 'flush_all' | netcat localhost 11211"

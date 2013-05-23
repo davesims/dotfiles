@@ -1,9 +1,5 @@
 #!/bin/sh
-#
-# An example hook script that is called after a successful
-# commit is made.
-#
-# To enable this hook, rename this file to "post-commit".
+
 echo "Building CTAGS (global hook)..."
 `brew --prefix`/bin/ctags -R .
 echo "CTAGS built..."
