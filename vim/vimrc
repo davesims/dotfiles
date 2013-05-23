@@ -24,9 +24,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" tab nav conweeniences
-map <C-t> :tabnew<CR><Esc>
-map <C-s> :tabprev<CR><Esc>
 " map <C-w> :tabnext<CR><Esc>
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
