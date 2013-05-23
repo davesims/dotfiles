@@ -3,6 +3,7 @@ cp  ~/bin/dotfiles/home.bashrc ~/.bashrc
 cp  ~/bin/dotfiles/zshrc ~/.zshrc
 cp  ~/bin/dotfiles/bash_profile ~/.bash_profile
 ln -nfs ~/bin/dotfiles/ruby/irbrc ~/.irbrc
+sudo ln -nfs ~/bin/dotfiles/git/global_hooks/post-commit /usr/local/git/share/git-core/templates/hooks/post-commit
 ln -nfs ~/bin/dotfiles/ruby/irssi ~/.irssi
 ln -nfs ~/bin/dotfiles/ruby/pryrc ~/.pryrc
 ln -nfs ~/bin/dotfiles/ruby/gemrc ~/.gemrc
