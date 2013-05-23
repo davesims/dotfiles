@@ -24,6 +24,9 @@ alias todo="vim ~/Dropbox/todo.txt"
 # Show a list of changed files from the last 24 hrs
 alias yesterday="find . -type f -not -path '*/.*' -ctime -1 > .yesterday && cat .yesterday &"
 
+# alias ctags to brew, avoid OSX's crufly old ctags
+alias ctags="`brew --prefix`/bin/ctags"
+
 # pilfered from danmayer
 alias tlf="tail -f"
 alias ln='ln -v'
