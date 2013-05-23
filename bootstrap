@@ -1,6 +1,6 @@
 ####### This is the dotfiles bootstrap. 
 ####### It symlinks and creates config dirs for all the things.
-####### Run this once after pulling dotfiles to ~/bin/dotfiles
+####### Run this once after pulling dotfiles to ~/bin/dotfiles.
 
 ######### bash & zsh config-fu ##########
 cp  ~/bin/dotfiles/home.bashrc ~/.bashrc
@@ -35,7 +35,7 @@ ln -nfs ~/bin/dotfiles/todo/todo.cfg ~/.todo/config
 mkdir ~/.ssh
 ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
 
-######### local config not to stored in VCS ########
+######### local config not to be stored in VCS ########
 mkdir ~/bin/dotfiles/local
 touch ~/bin/dotfiles/local/local_aliases
 touch ~/bin/dotfiles/local/local_env
