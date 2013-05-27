@@ -6,7 +6,7 @@
 [apply]
 	whitespace = nowarn
 [core]
-	excludesfile = /Users/davesims/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
