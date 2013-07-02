@@ -8,7 +8,7 @@ session:
               focus: true
             - cmd: "tail -f log/*"
               width: 40
-            - cmd: "bundle exec tdd rake"
+            - cmd: "bundle exec tdd --growl rake"
               height: 66 
             - cmd: "t ls"
               height: 50 
