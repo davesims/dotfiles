@@ -1,0 +1,14 @@
+session:
+    name: "dev"
+    windows: 
+        - name: "commissioner gordon"
+          root: '~/projects/commissioner_gordon'
+          panes:
+            - cmd: "vim ."
+              focus: true
+            - cmd: "tail -f log/*"
+              width: 40
+            - cmd: "bundle exec tdd --growl rake"
+              height: 66 
+            - cmd: "t ls"
+              height: 50 

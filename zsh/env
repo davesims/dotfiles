@@ -42,6 +42,10 @@ export LESS_TERMCAP_so=$'\E[1;31m' # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m' # end underline
 export LESS_TERMCAP_us=$'\E[04;33;5;146m' # begin underline
 
+######### ORACLE/RAILS STUFF #########
+export NLS_LANG="AMERICAN_AMERICA.UTF8"
+export ORACLE_HOME=/usr/local/oracle/instantclient_11_2
+export DYLD_LIBRARY_PATH=$ORACLE_HOME
 
 ######### RBENV ###########
 export RBENV_ROOT=/usr/local/Cellar/rbenv
