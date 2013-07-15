@@ -28,6 +28,11 @@ export ANDROID_HOME=/Library/android-sdk-mac_x86
 export ANT_HOME=/opt/local/bin/ant
 export SDK_DIR=/Library/android-sdk-mac_86
 
+######### ORACLE/RAILS STUFF #########
+export NLS_LANG="AMERICAN_AMERICA.UTF8"
+export ORACLE_HOME=/opt/oracle/instantclient
+export DYLD_LIBRARY_PATH=$ORACLE_HOME
+
 ######### RBENV ###########
 export RBENV_ROOT=/usr/local/Cellar/rbenv
 export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
