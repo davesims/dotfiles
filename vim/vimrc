@@ -121,6 +121,9 @@ endif
 :imap ` <Esc>
 :nmap ` <Esc>
 
+" Use TAB <char> to insert chars (like, hey, for instance,`) 
+" nnoremap <TAB> :<C-U>call InsertChar#insert(v:count1)<CR> 
+
 let g:nerdtree_tabs_open_on_console_startup=1
 
 " Quickly edit/reload the vimrc file
