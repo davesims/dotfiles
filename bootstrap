@@ -35,6 +35,10 @@ ln -nfs ~/bin/dotfiles/todo/todo.cfg ~/.todo/config
 mkdir ~/.ssh
 ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
 
+######## bloggy #######
+ln -nfs ~/bin/dotfiles/bloggy/bloggyrc ~/.bloggyrc
+
+
 ######### local config not to be stored in VCS ########
 mkdir ~/bin/dotfiles/local
 touch ~/bin/dotfiles/local/local_aliases

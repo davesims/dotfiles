@@ -11,13 +11,20 @@ syntax on
 
 set background=dark
 " solarized options 
+colorscheme solarized
 let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+let g:solarized_visibility = "normal"
+let g:solarized_contrast = "normal"
 let g:syntastic_disabled_filetypes = ['java']
 
 " Make the git gutter transparent (and any other gutter plugins)
 au VimEnter * highlight clear SignColumn
+
+"folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
 
 " No backups, swapfiles, etc. 
 set nobackup
@@ -29,7 +36,9 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l 
-colorscheme desert
+
+" Use F3 to toggle auto-indent off, for those times when one pastes.
+set pastetoggle=<F3>
 
 " TagBar
 nmap <F8> :TagbarToggle<CR>

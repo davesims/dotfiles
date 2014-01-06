@@ -29,6 +29,12 @@ export PATH=$JAVA_HOME/bin:$PATH
 export PATH=~/bin:$PATH
 export PATH=./bin:$PATH
 
+######### node paths ########
+export PATH=$PATH:/usr/local/share
+export PATH=$PATH:/usr/local/share/npm
+export PATH=$PATH:/usr/local/share/npm/lib/node_modules/
+export PATH=$PATH:/usr/local/share/npm/bin
+
 # for todo-txt
 # export PATH=$PATH:"/path/to/your/todo/scripts"
 export TODOTXT_DEFAULT_ACTION=ls

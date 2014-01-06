@@ -49,6 +49,9 @@ alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
 # teamocil
 alias tmc="teamocil \$2"
 
+# tmux
+alias takeover="tmux detach -a"
+
 # misc
 alias home='cd ~/'
 alias h='history'
@@ -107,6 +110,8 @@ alias mysql_start='/usr/local/Cellar/mysql/5.5.14/bin/mysqld_safe'
 #davemain slice
 alias davemain='ssh dave@davemain'
 
+#stdavids
+alias stdavids='ssh stdavid5@stdavidsdenton.org'
 # general mobile 
 alias run_weinre='open /Applications/weinre-mac/weinre.app; nohup show 8081 </dev/null &>/dev/null &' # run weinre server if it's not already, and show it at 8081 over showoff.io
 alias hv="nohup hierarchyviewer &"
