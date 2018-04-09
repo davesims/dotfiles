@@ -1,0 +1,12 @@
+name: kuzu
+root: ~/
+
+windows:
+  - kuzu-vim:
+      layout: main-vertical
+      panes:
+        - ssh root@kuzu.stream -t 'cd /etc/icecast2/; vim .; bash -l'
+  - kuzu-logs:
+      layout: main-vertical
+      panes:
+        - ssh root@kuzu.stream -t 'cd /var/log/icecast2/; tail -f *.log; bash -l'

@@ -1,0 +1,15 @@
+# ~/.tmuxinator/portal.yml
+
+name: kubos
+root: ~/kubos/kubos
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: tmart
+
+windows:
+  - kubos-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - kubos-cli:
+      layout: main-vertical

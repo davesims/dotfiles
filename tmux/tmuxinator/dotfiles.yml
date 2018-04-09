@@ -1,0 +1,10 @@
+name: dotfiles
+root: ~/bin/dotfiles
+
+windows:
+  - dotfiles-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - dotfiles-cli:
+      layout: main-vertical

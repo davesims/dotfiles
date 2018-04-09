@@ -1,0 +1,10 @@
+name: kubos-linux-build
+root: ~/kubos/kubos-linux-build
+
+windows:
+  - linux-build-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - linux-build-cli:
+      layout: main-vertical

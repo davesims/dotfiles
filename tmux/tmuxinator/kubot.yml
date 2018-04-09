@@ -1,0 +1,10 @@
+name: kubot
+root: ~/kubos/kubot
+
+windows:
+  - kubot-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - kubot-cli:
+      layout: main-vertical

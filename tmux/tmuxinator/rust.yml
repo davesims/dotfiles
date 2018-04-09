@@ -1,0 +1,15 @@
+# ~/.tmuxinator/portal.yml
+
+name: rust
+root: ~/projects/rust-stuff
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: tmart
+
+windows:
+  - rust-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - rust-cli:
+      layout: main-vertical

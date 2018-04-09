@@ -1,0 +1,19 @@
+name: agent
+root: ~/kubos/agent-tom
+
+windows:
+  - agent-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - agent-cli:
+      layout: tiled
+      panes:
+        - cd ../major-tom && bin/dev
+        - node app.js
+        - # just a command line
+  - tom-vim:
+      root: ~/kubos/major-tom
+      layout: main-vertical
+      panes:
+        - vim .
