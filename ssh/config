@@ -2,6 +2,3 @@ Host github-dave.com
   HostName github.com
   User git
   IdentityFile ~/.ssh/github_davsims_rsa
-Host davemain
-  HostName 173.203.82.140
-  User dave
