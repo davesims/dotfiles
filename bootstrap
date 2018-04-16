@@ -24,20 +24,9 @@ ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
 
 ######### tmux ###########
 ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -nfs ~/bin/dotfiles/tmux/teamocil ~/.teamocil
-
-######### misc ###########
-ln -nfs ~/bin/dotfiles/ruby/irssi ~/.irssi
-
-mkdir ~/.todo
-ln -nfs ~/bin/dotfiles/todo/todo.cfg ~/.todo/config
 
 mkdir ~/.ssh
 ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
-
-######## bloggy #######
-ln -nfs ~/bin/dotfiles/bloggy/bloggyrc ~/.bloggyrc
-
 
 ######### local config not to be stored in VCS ########
 mkdir ~/bin/dotfiles/local

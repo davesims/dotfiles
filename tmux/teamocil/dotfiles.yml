@@ -1,9 +1,0 @@
-session:
-    name: "dev"
-    windows: 
-        - name: "dotfiles"
-          root: '~/bin/dotfiles'
-          panes:
-            - cmd: "vim ."
-            - cmd: "cd ."
-              width: 40

@@ -1,79 +1,182 @@
-" Vim plugin to change the working directory to the project root
-" (identified by the presence of a .git directory).
+" Vim plugin to change the working directory to the project root.
 "
-" Copyright 2010 Andrew Stewart, <boss@airbladesoftware.com>
+" Copyright 2010-2016 Andrew Stewart, <boss@airbladesoftware.com>
 " Released under the MIT licence.
-"
-" This will happen automatically for typical Ruby webapp files.
-"
-" You can invoke it manually with <Leader>cd (usually \cd).
-" To change the mapping, put this in your .vimrc:
-"
-"     map <silent> <unique> <Leader>foo <Plug>RooterChangeToRootDirectory
-"
-" ... where <Leader>foo is your preferred mapping.
 
-
-"
-" Boilerplate
-"
-
-if exists("loaded_rooter")
+if exists('g:loaded_rooter') || &cp
   finish
 endif
-let loaded_rooter = 1
+let g:loaded_rooter = 1
 
-let s:save_cpo = &cpo
-set cpo&vim
+let s:nomodeline = (v:version > 703 || (v:version == 703 && has('patch442'))) ? '<nomodeline>' : ''
 
-"
-" Functions
-"
-
-" Returns the root directory for the current file, i.e the
-" closest parent directory containing a .git directory, or
-" an empty string if no such directory is found.
-function! s:FindRootDirectory()
-  let dir_current_file = expand("%:p:h")
-  let git_dir = finddir(".git", dir_current_file . ";")
-  " If we're at the project root or we can't find one above us
-  if git_dir == ".git" || git_dir == ""
-    return ""
-  else
-    return substitute(git_dir, "/.git$", "", "")
-  endif
-endfunction
-
-" Changes the current working directory to the current file's
-" root directory.
-function! s:ChangeToRootDirectory()
-  let root_dir = s:FindRootDirectory()
-  if root_dir != ""
-    exe ":cd " . root_dir
-  endif
-endfunction
-
-"
-" Mappings
-"
-
-if !hasmapto("<Plug>RooterChangeToRootDirectory")
-  map <silent> <unique> <Leader>cd <Plug>RooterChangeToRootDirectory
+if exists('+autochdir') && &autochdir
+  set noautochdir
 endif
-noremap <unique> <script> <Plug>RooterChangeToRootDirectory <SID>ChangeToRootDirectory
-noremap <SID>ChangeToRootDirectory :call <SID>ChangeToRootDirectory()<CR>
 
-"
-" Commands
-"
+if !exists('g:rooter_use_lcd')
+  let g:rooter_use_lcd = 0
+endif
+
+if !exists('g:rooter_patterns')
+  let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+endif
+
+if !exists('g:rooter_targets')
+  let g:rooter_targets = '/,*'
+endif
+
+if !exists('g:rooter_change_directory_for_non_project_files')
+  let g:rooter_change_directory_for_non_project_files = ''
+endif
+
+if !exists('g:rooter_silent_chdir')
+  let g:rooter_silent_chdir = 0
+endif
+
+if !exists('g:rooter_resolve_links')
+  let g:rooter_resolve_links = 0
+endif
+
+function! s:ChangeDirectory(directory)
+  if a:directory !=# getcwd()
+    let cmd = g:rooter_use_lcd == 1 ? 'lcd' : 'cd'
+    execute ':'.cmd fnameescape(a:directory)
+    if !g:rooter_silent_chdir
+      echo 'cwd: '.a:directory
+    endif
+    execute 'silent doautocmd' s:nomodeline 'User RooterChDir'
+  endif
+endfunction
+
+function! s:IsDirectory(pattern)
+  return stridx(a:pattern, '/') != -1
+endfunction
+
+function! s:ChangeDirectoryForBuffer()
+  let patterns = split(g:rooter_targets, ',')
+
+  if isdirectory(s:fd)
+    return index(patterns, '/') != -1
+  endif
+
+  if filereadable(s:fd) && empty(&buftype)
+    if exists('*glob2regpat')
+      for p in patterns
+        if p !=# '/' && s:fd =~# glob2regpat(p)
+          return 1
+        endif
+      endfor
+    else
+      return 1
+    endif
+  endif
+
+  return 0
+endfunction
+
+function! s:FindAncestor(pattern)
+  let fd_dir = isdirectory(s:fd) ? s:fd : fnamemodify(s:fd, ':h')
+
+  if s:IsDirectory(a:pattern)
+    let match = finddir(a:pattern, fnameescape(fd_dir).';')
+  else
+    let [_suffixesadd, &suffixesadd] = [&suffixesadd, '']
+    let match = findfile(a:pattern, fnameescape(fd_dir).';')
+    let &suffixesadd = _suffixesadd
+  endif
+
+  if empty(match)
+    return ''
+  endif
+
+  if s:IsDirectory(a:pattern)
+    return fnamemodify(match, ':p:h:h')
+  else
+    return fnamemodify(match, ':p:h')
+  endif
+endfunction
+
+function! s:SearchForRootDirectory()
+  for pattern in g:rooter_patterns
+    let result = s:FindAncestor(pattern)
+    if !empty(result)
+      return result
+    endif
+  endfor
+  return ''
+endfunction
+
+function! s:RootDirectory()
+  let root_dir = getbufvar('%', 'rootDir')
+  if empty(root_dir)
+    let root_dir = s:SearchForRootDirectory()
+    if !empty(root_dir)
+      call setbufvar('%', 'rootDir', root_dir)
+    endif
+  endif
+  return root_dir
+endfunction
+
+function! s:ChangeToRootDirectory()
+  let s:fd = expand('%:p')
+
+  if empty(s:fd)
+    let s:fd = getcwd()
+  endif
+
+  if g:rooter_resolve_links
+    let s:fd = resolve(s:fd)
+  endif
+
+  if !s:ChangeDirectoryForBuffer()
+    return
+  endif
+
+  let root_dir = s:RootDirectory()
+  if empty(root_dir)
+    " Test against 1 for backwards compatibility
+    if g:rooter_change_directory_for_non_project_files == 1 ||
+          \ g:rooter_change_directory_for_non_project_files ==? 'current'
+      if expand('%') != ''
+        call s:ChangeDirectory(fnamemodify(s:fd, ':h'))
+      endif
+    elseif g:rooter_change_directory_for_non_project_files ==? 'home'
+      call s:ChangeDirectory($HOME)
+    endif
+  else
+    call s:ChangeDirectory(root_dir)
+  endif
+endfunction
+
+" For third-parties.  Not used by plugin.
+function! FindRootDirectory()
+  let s:fd = expand('%:p')
+
+  if empty(s:fd)
+    let s:fd = getcwd()
+  endif
+
+  if g:rooter_resolve_links
+    let s:fd = resolve(s:fd)
+  endif
+
+  if !s:ChangeDirectoryForBuffer()
+    return ''
+  endif
+
+  return s:RootDirectory()
+endfunction
 
 command! Rooter :call <SID>ChangeToRootDirectory()
-autocmd BufEnter *.rb,*.html,*.haml,*.erb,*.rjs,*.css,*.js :Rooter
 
-"
-" Boilerplate
-"
-
-let &cpo = s:save_cpo
+if !exists('g:rooter_manual_only')
+  augroup rooter
+    autocmd!
+    autocmd VimEnter,BufEnter * :Rooter
+    autocmd BufWritePost * :call setbufvar('%', 'rootDir', '') | :Rooter
+  augroup END
+endif
 
 " vim:set ft=vim sw=2 sts=2 et:
+
