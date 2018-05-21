@@ -1,0 +1,12 @@
+# ~/.tmuxinator/molekube.yml
+
+name: molekube
+root: ~/molecule/kubernetes-molecule
+
+windows:
+  - molekube-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - molekube-cli:
+      layout: main-vertical

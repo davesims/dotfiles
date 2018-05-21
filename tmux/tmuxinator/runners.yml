@@ -1,0 +1,12 @@
+# ~/.tmuxinator/runners.yml
+
+name: runners
+root: ~/molecule/runners
+
+windows:
+  - runners-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - runners-cli:
+      layout: main-vertical

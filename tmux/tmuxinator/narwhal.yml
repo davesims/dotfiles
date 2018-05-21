@@ -1,0 +1,12 @@
+# ~/.tmuxinator/narwhal.yml
+
+name: narwhal
+root: ~/molecule/notifying-narwhal
+
+windows:
+  - narwhal-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - narwhal-cli:
+      layout: main-vertical
