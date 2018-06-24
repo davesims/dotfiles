@@ -1,0 +1,12 @@
+# ~/.tmuxinator/yatzy.yml
+
+name: yatzy
+root: ~/github/yatzy_refactoring
+
+windows:
+  - yatzy-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - yatzy-cli:
+      layout: main-vertical
