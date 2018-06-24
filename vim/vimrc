@@ -6,7 +6,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/powerline/powerline/bindings/vim
 call vundle#begin()
 
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'junegunn/vim-emoji'
 Plugin 'scrooloose/nerdtree'
+Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-surround'
@@ -58,9 +62,8 @@ let g:ale_fix_on_save = 1
 " Enable completion where available.
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-
+let g:ale_sign_error = emoji#for('exclamation')
+let g:ale_sign_warning = emoji#for('poop')
 set autoread
 
 syntax enable                     " Turn on syntax highlighting.
@@ -68,6 +71,10 @@ syntax on
 
 " Make the git gutter transparent (and any other gutter plugins)
 au VimEnter * highlight clear SignColumn
+let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+let g:gitgutter_sign_modified_removed = emoji#for('collision')
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -117,12 +124,6 @@ set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 set grepprg=ack                   " use ack instead of grep for, er, grep
 
-" UNCOMMENT TO USE
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
-
-set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
@@ -151,6 +152,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 nnoremap <leader>w <Esc>:w<CR>
 
+nnoremap <F5> :UndotreeToggle<cr>
+
 " SideSearch stuff:
 " How should we execute the search?
 " --heading and --stats are required!
@@ -164,6 +167,12 @@ let g:side_search_split_pct = 0.2
 command! -complete=file -nargs=+ Ag execute 'SideSearch <args>'
 
 "autocmd BufWritePre * :%s/\s\+$//e
+
+set tabstop=2                    " Global tab width.
+set shiftwidth=2                 " And again, related.
+set expandtab                    " Use spaces instead of tabs
+
+set laststatus=2                  " Show the status line all the time
 
 set background=dark
 " solarized options
