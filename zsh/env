@@ -60,6 +60,7 @@ export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
 # Go
 export GOROOT=/usr/local/go/
 export PATH=$PATH:$GOROOT/bin
+export GOPATH=/Users/davesims/molecule/go
 
 # CL Colors
 export CLICOLOR=1
