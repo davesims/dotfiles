@@ -1,0 +1,12 @@
+# ~/.tmuxinator/molecule.yml
+
+name: molecule-team
+root: ~/molecule/molecule-team
+
+windows:
+  - molecule-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - molecule-cli:
+      layout: main-vertical

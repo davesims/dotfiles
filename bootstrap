@@ -25,6 +25,11 @@ ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
 ######### tmux ###########
 ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
+######### pgcli ############
+mkdir ~/.config/pgcli
+ln -nfs ~/bin/dotfiles/pgcli/config ~/.config/pgcli/config
+
+######### ssh ############
 mkdir ~/.ssh
 ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
 

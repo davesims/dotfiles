@@ -10,3 +10,16 @@ windows:
         - vim .
   - molekube-cli:
       layout: main-vertical
+  - molecule-vim:
+      root: ~/molecule/molecule
+      layout: main-vertical
+      panes:
+        - vim .
+  - alpha-console:
+      layout: main-vertical
+      panes:
+        - kube r console vapor-alpha
+  - production-console!!!!!:
+      layout: main-vertical
+      panes:
+        - kube r console vapor-production

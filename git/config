@@ -1,6 +1,6 @@
 [user]
 	name = Dave Sims
-	email = davsims@gmail.com
+	email = dave@molecule.io
 [pull]
 	rebase = true
 [apply]

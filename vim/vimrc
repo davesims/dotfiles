@@ -34,6 +34,8 @@ Plugin 'airblade/vim-rooter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'joukevandermaas/vim-ember-hbs'
+Plugin 'AndrewRadev/ember_tools.vim'
 
 
 call vundle#end()            " required
@@ -112,7 +114,7 @@ set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 
-set wrap!
+set nowrap
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
