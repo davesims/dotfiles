@@ -27,7 +27,10 @@ ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 ######### pgcli ############
 mkdir ~/.config/pgcli
-ln -nfs ~/bin/dotfiles/pgcli/config ~/.config/pgcli/config
+ln -nfs ~/bin/dotfiles/postgres/pgcli/config ~/.config/pgcli/config
+
+######### pgvm ############
+ln -nfs ~/bin/dotfiles/postgres/pgvm/pgvm_env ~/.pgvm/pgvm_env
 
 ######### ssh ############
 mkdir ~/.ssh
