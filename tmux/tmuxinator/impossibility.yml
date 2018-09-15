@@ -1,0 +1,16 @@
+# ~/.tmuxinator/impossibility.yml
+
+name: impossibility
+root: ~/projects/impossibility/impossibility
+
+windows:
+  - impossibility-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - impossibility-cli:
+      layout: main-vertical
+  - impossibility-server:
+      layout: main-vertical
+      panes:
+        - bundle exec rails server

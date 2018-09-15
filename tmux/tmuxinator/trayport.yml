@@ -1,0 +1,12 @@
+# ~/.tmuxinator/trayport.yml
+
+name: trayport
+root: ~/molecule/trayport
+
+windows:
+  - trayport-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - trayport-cli:
+      layout: main-vertical

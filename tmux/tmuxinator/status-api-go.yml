@@ -1,0 +1,11 @@
+# ~/.tmuxinator/status-api-go
+name: status-api-go
+root: ~/molecule/status-api-go
+
+windows:
+  - status-api-go-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - status-api-go-cli:
+      layout: main-vertical

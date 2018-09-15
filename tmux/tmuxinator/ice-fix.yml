@@ -1,0 +1,12 @@
+# ~/.tmuxinator/ice-fix.yml
+
+name: ice-fix
+root: ~/molecule/ice-fix-listener
+
+windows:
+  - ice-fix-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - ice-fix-cli:
+      layout: main-vertical

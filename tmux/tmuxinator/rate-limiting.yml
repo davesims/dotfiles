@@ -1,0 +1,12 @@
+# ~/.tmuxinator/rate-limiting.yml
+
+name: rate-limiting
+root: ~/molecule/rate-limiting
+
+windows:
+  - rate-limiting-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - rate-limiting-cli:
+      layout: main-vertical

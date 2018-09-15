@@ -1,0 +1,11 @@
+# ~/.tmuxinator/worker-cleaner
+name: worker-cleaner
+root: ~/molecule/worker_cleaner
+
+windows:
+  - worker-cleaner-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - worker-cleaner-cli:
+      layout: main-vertical

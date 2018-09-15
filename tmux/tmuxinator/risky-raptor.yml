@@ -1,0 +1,11 @@
+# ~/.tmuxinator/risky-raptor
+name: risky-raptor
+root: ~/molecule/risky-raptor
+
+windows:
+  - risky-raptor-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - risky-raptor-cli:
+      layout: main-vertical
