@@ -35,6 +35,7 @@
 
         st    = "!f() { git ls-files --exclude-standard -t -u -s -m -d $@ | sed -e 's/C.*\t/C /' ; } ; f"
         sto   = st -o
+        br    = "!git for-each-ref --sort=-committerdate refs/heads/ | awk '{ print $3 }' | sed -e 's/^refs\\/heads\\/\\(.*\\)/\\1/'"
 
         ds    = diff --stat
         cds   = !git ds --cached
@@ -54,6 +55,7 @@
         publish = push publish
         pushall = !git remote | xargs -n1 git push
         pushalltags = !git remote | xargs -n1 git push --tags
+        tagcommit = rev-list -n 1
 
         tblog = log --not-grep='Auto.increment of build number due to changes in directory '
         tblg  = "!f() { git lg $@ | grep -v '^[^(]*Auto.increment of build number due to changes in directory ' | less ; } ; f"

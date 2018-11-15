@@ -3,8 +3,6 @@
 name: molecule
 root: ~/molecule/molecule
 
-pre: pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
-
 windows:
   - molecule-vim:
       layout: main-vertical
@@ -16,3 +14,8 @@ windows:
   - molecule-console: bundle exec rails console
   - molecule-pgcli: pgcli vapor
   - molecule-logs: tail -f ./log/*.log
+  - ember-server:
+      root: ~/molecule/molecule/frontend
+      layout: main-vertical
+      panes:
+        - ember server --environment=test

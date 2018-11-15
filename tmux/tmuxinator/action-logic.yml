@@ -1,0 +1,12 @@
+# ~/.tmuxinator/action-logic.yml
+
+name: action-logic
+root: ~/github/ActionLogic
+
+windows:
+  - action-logic-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - action-logic-cli:
+      layout: main-vertical

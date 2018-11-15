@@ -79,6 +79,7 @@ alias launchd_logs="tail -f /var/log/launchd*.log"
 # git
 alias glog='git log --pretty=oneline --color'
 alias gl='git log --stat --color'
+alias gbranch="git for-each-ref --sort=-committerdate refs/heads/ | awk '{ print $3 }' | sed -n 's/^refs\/heads\/\(.*\)/\1/p' | color yellow"
 
 # apache
 alias apache_conf='mate /etc/apache2/httpd.conf'
@@ -95,6 +96,8 @@ alias ss='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset
 alias fs='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; bundle exec foreman start'
 alias sc='bundle exec ruby script/console'
 alias rc='bundle exec rails console'
+alias be='bundle exec'
+alias ber='bundle exec rspec'
 alias rdbc='bundle exec rails dbconsole'
 alias sg='./script/generate'
 alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database.."; rake db:test:purge; echo "Preparing test database.."; rake db:test:prepare'
@@ -147,5 +150,8 @@ alias starwars="telnet towel.blinkenlights.nl"
 alias dwarf="~/Games/df_osx/df"
 alias hn="w3m -cookie hackerne.ws"
 alias why="wget whytheluckystiff.net/SPOOL/DESOLEE"
+
+# kubernetes
+alias k="kubectl"
 
 . ~/bin/dotfiles/local/local_aliases

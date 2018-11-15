@@ -2,7 +2,6 @@
 source ~/bin/dotfiles/zsh/zsh.conf
 
 ######### ENV #########
-export JAVA_HOME=/Library/Java/Home
 export ANDROID_HOME=/Library/android-sdk-mac_x86
 export ANT_HOME=/opt/local/bin/ant
 export SDK_DIR=/Library/android-sdk-mac_86
@@ -22,7 +21,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=$PATH:/usr/local/Cellar/rbenv/shims
 export PATH=$PATH:/usr/local/Cellar/rbenv/bin
-export PATH=$PATH:/usr/local/pgsql/bin
+export PATH=$PATH:/Users/davesims/molecule/trayport/lib/com/jacob/jacob/1.19
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$JAVA_HOME/bin:$PATH
@@ -75,11 +74,5 @@ export VISUAL="vim"
 export HISTCONTROL=erasedups # don't store duplicate lines
 export HISTSIZE=100000 #remember 100k unique lines
 
-# This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
-# You only want this if you are on Snow Leopard
-export ARCHFLAGS='-arch x86_64'
-export ANT_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=256m"
-
 # Load local env stuff that is kept out of VCS
 . ~/bin/dotfiles/local/local_env
-

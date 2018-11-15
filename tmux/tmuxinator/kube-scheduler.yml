@@ -1,0 +1,11 @@
+# ~/.tmuxinator/kube-scheduler
+name: kube-scheduler
+root: ~/molecule/kube-scheduler
+
+windows:
+  - kube-scheduler-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - kube-scheduler-cli:
+      layout: main-vertical

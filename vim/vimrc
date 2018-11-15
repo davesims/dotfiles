@@ -17,6 +17,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-dispatch'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -36,7 +37,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'AndrewRadev/ember_tools.vim'
-
+Plugin 'fatih/vim-go'
+Plugin 'hashicorp/vagrant'
+Plugin 'PProvost/vim-ps1'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -167,6 +170,12 @@ let g:side_search_splitter = 'vnew'
 let g:side_search_split_pct = 0.2
 " Create an shorter `SS` command
 command! -complete=file -nargs=+ Ag execute 'SideSearch <args>'
+
+nnoremap <F9> :Dispatch bundle exec rspec %<CR>
+
+augroup vagrant
+  au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
 
 "autocmd BufWritePre * :%s/\s\+$//e
 

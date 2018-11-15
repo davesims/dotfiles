@@ -1,0 +1,12 @@
+# ~/.tmuxinator/molecule-api-docs.yml
+
+name: meerkat
+root: ~/molecule/molecule-api-docs
+
+windows:
+  - api-docs-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - api-docs-cli:
+      layout: main-vertical

@@ -3,12 +3,6 @@
 name: tom
 root: ~/kubos/major-tom
 
-# Runs before everything. Use it to start daemons etc.
-pre: pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
-
-# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
-# tmux_command: tmart
-
 windows:
   - tom-vim:
       layout: main-vertical

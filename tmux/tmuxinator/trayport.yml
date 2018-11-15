@@ -10,3 +10,22 @@ windows:
         - vim .
   - trayport-cli:
       layout: main-vertical
+  - trayport-servers:
+      layout: main-vertical
+      panes:
+        - mvn exec:java
+        - cd ../molecule && be rake sneakers:run
+        - tail -f /usr/local/var/log/rabbitmq/rabbit@localhost.log
+  - vapor-vim:
+      root: ~/molecule/molecule
+      layout: main-vertical
+      panes:
+        - vim .
+  - vapor-cli:
+      root: ~/molecule/molecule
+      layout: main-vertical
+  - rabbit-server:
+      layout: main-vertical
+      panes:
+        - rabbitmq-server
+

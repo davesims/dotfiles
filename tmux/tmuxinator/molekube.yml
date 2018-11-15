@@ -19,7 +19,7 @@ windows:
       layout: main-vertical
       panes:
         - kube r console vapor-alpha
-  - production-console!!!!!:
+  - PRODUCTION-CONSOLE!!!!!:
       layout: main-vertical
       panes:
         - kube r console vapor-production

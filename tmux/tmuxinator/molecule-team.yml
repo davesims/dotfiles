@@ -1,4 +1,4 @@
-# ~/.tmuxinator/molecule.yml
+# ~/.tmuxinator/molecule-team.yml
 
 name: molecule-team
 root: ~/molecule/molecule-team

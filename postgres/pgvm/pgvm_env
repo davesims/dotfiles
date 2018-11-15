@@ -8,3 +8,8 @@ export pgvm_home pgvm_src pgvm_logs pgvm_environments pgvm_clusters
 
 export PATH=${pgvm_home}/bin:$PATH
 export PATH=${pgvm_environments}/current/bin:$PATH
+export PGVM_HOME=${pgvm_home}
+export PGVM_BIN=${pgvm_environments}/current/bin
+export PGVM_CURRENT=${pgvm_environments}/current
+export PGVM_LOGS=${pgvm_logs}
+export PGDATA=$PGVM_CURRENT

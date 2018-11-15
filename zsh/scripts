@@ -7,6 +7,136 @@ BLUE='\e[1;34m'
 cyan='\e[0;36m'
 CYAN='\e[1;36m'
 NC='\e[0m'
+green="\033[0;32m"
+GREEN="\033[0;32m"
+gray="\033[0;37m"
+GRAY="\033[0;37m"
+yellow="\033[0;33m"
+YELLOW="\033[0;33m"
+normal="\033[m"
+NORMAL="\033[m"
+
+############### k8s stuff
+
+function kloghelp() {
+ cat <<-END
+Tails kubernetes pod logs for podname pattern, namespace & container name:
+------
+  -p The podname pattern to be matched
+  -n The namespace of the pod (optional)
+  -c The container name (optional)
+END
+}
+
+function klog() {
+  if [ $# -eq 0 ];
+  then
+      kloghelp
+      return
+  fi
+  local container=''
+  local podname_pattern=''
+  local namespace=''
+  local podname=''
+
+  while getopts 'c:n:p:h' flag; do
+    case "${flag}" in
+      c) container=" -c ${OPTARG}" ;;
+      n) namespace="-n ${OPTARG}" ;;
+      p) podname_pattern="${OPTARG}" ;;
+      h) kloghelp
+         return ;;
+    esac
+  done
+  command="kubectl get pods $namespace | grep $podname_pattern |  awk '{ print \$1 }' "
+  podname=$(eval $command)
+  eval "kubectl logs -f $podname $namespace $container"
+}
+
+function kshell() {
+  if [ $# -eq 0 ];
+  then
+      kloghelp
+      return
+  fi
+  local container=''
+  local podname_pattern=''
+  local namespace=''
+  local podname=''
+
+  while getopts 'c:n:p:h' flag; do
+    case "${flag}" in
+      c) container=" -c ${OPTARG}" ;;
+      n) namespace="-n ${OPTARG}" ;;
+      p) podname_pattern="${OPTARG}" ;;
+      h) kloghelp
+         return ;;
+    esac
+  done
+  command="kubectl get pods $namespace | grep $podname_pattern |  awk '{ print \$1 }' "
+  podname=$(eval $command)
+  eval "kubectl -exec -it $podname $namespace $container -- sh"
+}
+
+function kenv() {
+  if [ $# -eq 0 ];
+  then
+      kloghelp
+      return
+  fi
+  local container=''
+  local podname_pattern=''
+  local namespace=''
+  local podname=''
+
+  while getopts 'c:n:p:h' flag; do
+    case "${flag}" in
+      c) container=" -c ${OPTARG}" ;;
+      n) namespace="-n ${OPTARG}" ;;
+      p) podname_pattern="${OPTARG}" ;;
+      h) kloghelp
+         return ;;
+    esac
+  done
+  command="kubectl get pods $namespace | grep $podname_pattern |  awk '{ print \$1 }' "
+  podname=$(eval $command)
+  eval "kubectl exec -it $podname $namespace $container -- env"
+}
+
+function kubeps() {
+  kubectl get pods --namespace $2 | \
+  grep $1 | \
+  awk '{ print $1 }' | \
+  xargs -I % sh -c "echo 'Worker: ' %; kubectl exec % -it --namespace=$2 ps aux"
+}
+
+function nodestop() {
+  kubectl get nodes --namespace $2 | grep Running | \
+  grep $1 | \
+  awk '{ print $1 }' | \
+  xargs -I % sh -c "echo 'Worker: ' %; kubectl top pod % --namespace=$2"
+}
+
+function kubetop() {
+  kubectl get pods --namespace $2 | grep Running | \
+  grep $1 | \
+  awk '{ print $1 }' | \
+  xargs -I % sh -c "echo 'Worker: ' %; kubectl top pod % --namespace=$2"
+}
+
+function shellpod() {
+  kubectl get pods --namespace $2 |  \
+  grep $1 | \
+  awk '{ print $1 }' | \
+  xargs -o -I % kubectl exec -it %  --namespace $2 -- /bin/bash
+}
+
+color(){
+  color=\$${1:-NORMAL}
+  echo -ne "`eval echo ${color}`"
+    cat
+    echo -ne "${NORMAL}"
+}
 
 function ruby_version()
 {
