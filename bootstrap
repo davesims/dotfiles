@@ -1,11 +1,18 @@
-####### This is the dotfiles bootstrap. 
+#!/bin/bash
+
+###### This is the dotfiles bootstrap. 
 ####### It symlinks and creates config dirs for all the things.
 ####### Run this once after pulling dotfiles to ~/bin/dotfiles.
 
+####### First provision the Mac
+if [[ $1 == "--provision" ]]; then
+    sh provision.sh
+else
+    echo "Not provisioning..."
+fi
+
 ######### bash & zsh config-fu ##########
-cp  ~/bin/dotfiles/home.bashrc ~/.bashrc
 cp  ~/bin/dotfiles/zshrc ~/.zshrc
-cp  ~/bin/dotfiles/bash_profile ~/.bash_profile
 
 ######### ruby ###########
 ln -nfs ~/bin/dotfiles/ruby/irbrc ~/.irbrc
@@ -23,9 +30,12 @@ ln -nfs ~/bin/dotfiles/vim/ctags ~/.ctags
 ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
 
 ######### tmux ###########
+mkdir ~/.bin
+ln -nfs ~/bin/dotfiles/tmux/tmuxinator.sh  ~/.bin/tmuxinator.sh
 ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 ######### pgcli ############
+mkdir ~/.config
 mkdir ~/.config/pgcli
 ln -nfs ~/bin/dotfiles/postgres/pgcli/config ~/.config/pgcli/config
 
