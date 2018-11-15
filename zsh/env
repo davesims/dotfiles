@@ -70,6 +70,9 @@ export VISUAL="vim"
 export GIT_EDITOR="vim"
 export VISUAL="vim"
 
+# tmux
+export EDITOR='vim'
+
 # history options
 export HISTCONTROL=erasedups # don't store duplicate lines
 export HISTSIZE=100000 #remember 100k unique lines
