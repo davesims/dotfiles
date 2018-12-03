@@ -14,6 +14,7 @@ windows:
   - molecule-console: bundle exec rails console
   - molecule-pgcli: pgcli vapor
   - molecule-logs: tail -f ./log/*.log
+  - resque-worker: QUEUE=* bundle exec rake environment resque:work
   - ember-server:
       root: ~/molecule/molecule/frontend
       layout: main-vertical
