@@ -18,28 +18,22 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-dispatch'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'w0rp/ale'
+"Plugin 'w0rp/ale'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'ddrscott/vim-side-search'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-scripts/Solarized'
 Plugin 'vim-scripts/taglist.vim'
-Plugin 'racer-rust/vim-racer'
 Plugin 'rust-lang/rust.vim'
-Plugin 'airblade/vim-rooter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'AndrewRadev/ember_tools.vim'
-Plugin 'fatih/vim-go'
 Plugin 'hashicorp/vagrant'
 Plugin 'PProvost/vim-ps1'
+Plugin 'mustache/vim-mustache-handlebars'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -176,12 +170,14 @@ nnoremap <F9> :Dispatch bundle exec rspec %<CR>
 augroup vagrant
   au BufRead,BufNewFile Vagrantfile set filetype=ruby
 augroup END
+au BufNewFile,BufRead *.ejs set filetype=html
 
 "autocmd BufWritePre * :%s/\s\+$//e
 
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
+set tabstop=4                    " Global tab width.
+set shiftwidth=4                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
+set splitright
 
 set laststatus=2                  " Show the status line all the time
 

@@ -1,0 +1,16 @@
+# ~/.tmuxinator/i-salvage.yml
+
+name: i-salvage
+root: ~/projects/i-salvage
+
+windows:
+  - i-salvage-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - i-salvage-cli:
+      layout: main-vertical
+  - i-salvage-server:
+      layout: main-vertical
+      panes:
+        - bundle exec ruby app.rb

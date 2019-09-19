@@ -1,0 +1,25 @@
+# ~/.tmuxinator/new-coke.yml
+
+name: new-coke
+root: ~/projects/new-coke
+
+windows:
+  - new-coke-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - new-coke-cli:
+      layout: main-vertical
+  - new-coke-watch:
+      root: ~/projects/new-coke/web
+      layout: main-vertical
+      panes:
+        - nvm use && npm run watch
+  - new-coke-console:
+      layout: main-vertical
+      panes:
+        - nvm use && node console
+  - new-coke-server:
+      layout: main-vertical
+      panes:
+        - nvm use && node start

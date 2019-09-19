@@ -1,5 +1,2 @@
 #!/bin/sh
 
-echo "Building CTAGS (global hook)..."
-`brew --prefix`/bin/ctags -R .
-echo "CTAGS built..."

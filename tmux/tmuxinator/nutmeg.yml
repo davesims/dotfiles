@@ -1,0 +1,12 @@
+# ~/.tmuxinator/portal.yml
+
+name: nutmeg
+root: ~/projects/nutmeg_of_consolation
+
+windows:
+  - nutmeg-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - nutmeg-cli:
+      layout: main-vertical

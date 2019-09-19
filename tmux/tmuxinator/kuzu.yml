@@ -1,12 +1,26 @@
 name: kuzu
-root: ~/
+root: ~/projects/KUZU
 
 windows:
-  - kuzu-vim:
+  - producer-vim:
       layout: main-vertical
       panes:
-        - ssh root@kuzu.stream -t 'cd /etc/icecast2/; vim .; bash -l'
-  - kuzu-logs:
+        - vim .
+  - producer-cli:
+      layout: main-vertical
+  - producer-server:
       layout: main-vertical
       panes:
-        - ssh root@kuzu.stream -t 'cd /var/log/icecast2/; tail -f *.log; bash -l'
+        - npm run start
+  - producer-ssh:
+      layout: main-vertical
+      panes:
+        - ssh kuzu@producer.kuzu
+  - stream-ssh:
+      layout: main-vertical
+      panes:
+        - ssh root@stream.kuzu
+  - stream-prod-logs:
+      layout: main-vertical
+      panes:
+        - ssh root@stream.kuzu -t 'cd /var/log/icecast2/; tail -f *.log; bash -l'

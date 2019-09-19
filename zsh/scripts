@@ -18,6 +18,19 @@ NORMAL="\033[m"
 
 ############### k8s stuff
 
+function kubekillzombies() {
+  kubectl get pods --all-namespaces |
+  grep -E 'Unknown|Completed|Evicted' |
+  awk '{ printf "%s %s\n", $2, $1 }' |
+  xargs -n2 sh -c 'kubectl delete pod $0 -n $1'
+}
+
+function watchzombies() {
+  watch " kubectl get pods -owide --all-namespaces | grep -E 'Unknown|Completed|Evicted' "
+} 
+
+source <(kubectl completion zsh)
+
 function kloghelp() {
  cat <<-END
 Tails kubernetes pod logs for podname pattern, namespace & container name:

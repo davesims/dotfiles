@@ -1,0 +1,12 @@
+# ~/.tmuxinator/auth.yml
+
+name: auth
+root: ~/projects/auth
+
+windows:
+  - auth-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - auth-cli:
+      layout: main-vertical

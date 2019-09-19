@@ -2,7 +2,5 @@ Host github-dave.com
   HostName github.com
   User git
   IdentityFile ~/.ssh/github_davsims_rsa
-Host trayport.dev
-  HostName trayport.dev
-  User vagrant
-  IdentityFile ~/.ssh/id_rsa
+Host localhost
+  ForwardAgent yes

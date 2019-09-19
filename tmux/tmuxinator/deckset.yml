@@ -1,0 +1,12 @@
+# ~/.tmuxinator/deckset.yml
+
+name: deckset
+root: ~/projects/deckset
+
+windows:
+  - deckset-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - deckset-cli:
+      layout: main-vertical

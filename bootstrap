@@ -32,6 +32,7 @@ ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
 ######### tmux ###########
 mkdir ~/.bin
 ln -nfs ~/bin/dotfiles/tmux/tmuxinator.sh  ~/.bin/tmuxinator.sh
+ln -s ~/bin/dotfiles/tmux/tmuxinator  ~/.config/tmuxinator
 ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 ######### pgcli ############
@@ -40,7 +41,10 @@ mkdir ~/.config/pgcli
 ln -nfs ~/bin/dotfiles/postgres/pgcli/config ~/.config/pgcli/config
 
 ######### pgvm ############
-ln -nfs ~/bin/dotfiles/postgres/pgvm/pgvm_env ~/.pgvm/pgvm_env
+# ln -nfs ~/bin/dotfiles/postgres/pgvm/pgvm_env ~/.pgvm/pgvm_env
+
+######### node ############
+ln -nfs ~/bin/dotfiles/node/npmrc ~/.npmrc  
 
 ######### ssh ############
 mkdir ~/.ssh

@@ -1,0 +1,12 @@
+# ~/.tmuxinator/portal.yml
+
+name: defenders
+root: ~/projects/defenders
+
+windows:
+  - defenders-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - defenders-cli:
+      layout: main-vertical

@@ -1,0 +1,16 @@
+# ~/.tmuxinator/portal.yml
+
+name: maturin
+root: ~/projects/maturin
+
+windows:
+  - maturin-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - maturin-cli:
+      layout: main-vertical
+  - maturin-firebase-emu:
+      layout: main-vertical
+      panes:
+          - nvm exec firebase emulators:start
