@@ -34,6 +34,7 @@ mkdir ~/.bin
 ln -nfs ~/bin/dotfiles/tmux/tmuxinator.sh  ~/.bin/tmuxinator.sh
 ln -s ~/bin/dotfiles/tmux/tmuxinator  ~/.config/tmuxinator
 ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -nfs ~/bin/dotfiles/tmux/tmuxinator ~/.tmuxinator
 
 ######### pgcli ############
 mkdir ~/.config
