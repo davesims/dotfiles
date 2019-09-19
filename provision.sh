@@ -1,6 +1,7 @@
 # Basic installation dependencies, python & pip
 brew install python3
 pip3 install powerline-shell
+brew install pyenv
 # tmux & zsh
 brew install tmux
 brew install zsh zsh-completions
@@ -53,6 +54,7 @@ brew install kubernetes-cli
 
 # AWS
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip -a awscli-bundle.zip
 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 rm -rf awscli-bundle
-rm -f awscli-bundle.zip
+m -f awscli-bundle.zip
