@@ -51,6 +51,7 @@ alias tmc="teamocil \$2"
 
 # tmux
 alias takeover="tmux detach -a"
+alias mux="tmux"
 
 # misc
 alias home='cd ~/'

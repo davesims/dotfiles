@@ -18,7 +18,7 @@ rbenv global 2.5.1
 rbenv rehash
 
 # tmuxinator 
-rbenv exec gem install tmuxinator
+brew install tmuxinator
 tmuxinator doctor
 
 # postgres
@@ -58,3 +58,9 @@ unzip -a awscli-bundle.zip
 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 rm -rf awscli-bundle
 rm -f awscli-bundle.zip
+
+# Java & freinds
+brew install sbt
+brew install gradle
+curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+brew install flyway 

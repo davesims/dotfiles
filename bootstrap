@@ -57,3 +57,4 @@ touch ~/bin/dotfiles/local/local_aliases
 touch ~/bin/dotfiles/local/local_env
 touch ~/bin/dotfiles/local/local_scripts
 
+source ~/.zshrc
