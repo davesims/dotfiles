@@ -5,6 +5,7 @@ brew install pyenv
 # tmux & zsh
 brew install tmux
 brew install zsh zsh-completions
+chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
@@ -24,6 +25,13 @@ tmuxinator doctor
 # postgres
 brew install postgres
 brew services start postgresql
+
+# mysql 
+brew install mysql
+brew install mycli
+brew services start mysql  
+mysql -u root -e "CREATE USER 'davesims'@'localhost'"
+mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'davesims'@'localhost';"
 
 # pgcli & pgvm
 pip3 install pgcli
@@ -51,6 +59,7 @@ chmod +x ./aws-iam-authenticator
 mv aws-iam-authenticator /usr/local/bin
 
 # k8s stuff
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
 brew install kubernetes-cli
 
 # AWS
