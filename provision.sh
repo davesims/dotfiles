@@ -41,6 +41,7 @@ nvm install node
 # general tooling
 brew install htop
 brew install tig
+brew install watch
 brew install the_silver_searcher
 
 # AWS stuff

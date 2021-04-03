@@ -29,6 +29,15 @@ function watchzombies() {
   watch " kubectl get pods -owide --all-namespaces | grep -E 'Unknown|Completed|Evicted' "
 } 
 
+function setAwsCreds() {
+  export AWS_CREDENTIAL_FILE=~/.aws/credentials
+  export AWS_DEFAULT_REGION=$(aws --profile default configure get region | sed "s/$(printf '\r')\$//")
+  export AWS_ACCESS_KEY_ID=$(aws --profile default configure get aws_access_key_id | sed "s/$(printf '\r')\$//")
+  export AWS_SECRET_ACCESS_KEY=$(aws --profile default configure get aws_secret_access_key | sed "s/$(printf '\r')\$//")
+  export AWS_SESSION_TOKEN=$(aws --profile default configure get aws_session_token | sed "s/$(printf '\r')\$//")
+  export AWS_DEFAULT_REGION='us-east-1'
+}
+
 source <(kubectl completion zsh)
 
 function kloghelp() {
