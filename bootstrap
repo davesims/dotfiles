@@ -41,6 +41,9 @@ mkdir ~/.config
 mkdir ~/.config/pgcli
 ln -nfs ~/bin/dotfiles/postgres/pgcli/config ~/.config/pgcli/config
 
+######### mycli ############
+ln -nfs ~/bin/dotfiles/mysql/mycli/config ~/.myclirc
+
 ######### pgvm ############
 # ln -nfs ~/bin/dotfiles/postgres/pgvm/pgvm_env ~/.pgvm/pgvm_env
 
