@@ -179,6 +179,10 @@ set shiftwidth=4                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 set splitright
 
+"ruby tabs
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
+
 set laststatus=2                  " Show the status line all the time
 
 set background=dark

@@ -10,13 +10,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-# ruby & rbenv stuff
+# ruby, rails & rbenv stuff
 brew install rbenv
 rbenv init
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 rbenv install 3.0.0
 rbenv global 3.0.0
 rbenv rehash
+sudo gem install rails
 
 # tmuxinator 
 brew install tmuxinator
