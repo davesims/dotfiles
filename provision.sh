@@ -52,6 +52,7 @@ brew install htop
 brew install tig
 brew install watch
 brew install the_silver_searcher
+brew install asdf
 
 # AWS stuff
 pip3 install awscli --upgrade --user
