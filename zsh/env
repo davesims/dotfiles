@@ -80,7 +80,10 @@ export EDITOR='vim'
 
 # history options
 export HISTCONTROL=erasedups # don't store duplicate lines
-export HISTSIZE=100000 #remember 100k unique lines
+export HISTSIZE=1000000000
+export HISTFILESIZE=1000000000
+export HISTTIMEFORMAT="[%F %T] "
+
 
 # Load local env stuff that is kept out of VCS
 . ~/bin/dotfiles/local/local_env
