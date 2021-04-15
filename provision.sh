@@ -82,7 +82,7 @@ cat <<EOT >> ~/.aws/config
 region = eu-west-1
 EOT
 
-export MFA_DEVICE=arn:aws:iam::<account_id>:mfa/<iam_username> 
+# export MFA_DEVICE=arn:aws:iam::<account_id>:mfa/<iam_username> 
 export PATH="$PATH:$HOME/.local/bin"  # Add aws-mfa binary to path
 export PATH="$PATH:$HOME/Library/Python/3.8/bin" # if installed with Python 3 
 
