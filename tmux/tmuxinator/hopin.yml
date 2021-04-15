@@ -1,0 +1,25 @@
+# ~/.tmuxinator/hopin.yml
+
+name: hopin
+root: ~/hopin/hopin
+
+windows:
+  - hopin-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - hopin-cli:
+      layout: main-vertical
+  - hopin-watch:
+      root: ~/hopin/hopin/web
+      layout: main-vertical
+      panes:
+        - nvm use && npm run watch
+  - hopin-console:
+      layout: main-vertical
+      panes:
+        - nvm use && node console
+  - hopin-server:
+      layout: main-vertical
+      panes:
+        - nvm use && node start

@@ -1,0 +1,20 @@
+# ~/.tmuxinator/hopin-gitops.yml
+
+name: hopin-gitops
+root: ~/hopin/hopin-gitops
+
+windows:
+  - hopin-gitops-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - hopin-gitops-cli:
+      layout: main-vertical
+  - hopin-gitops-console:
+      layout: main-vertical
+      panes:
+        - nvm use && node console
+  - hopin-gitops-server:
+      layout: main-vertical
+      panes:
+        - nvm use && node start
