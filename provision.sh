@@ -1,3 +1,6 @@
+# First, homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # Basic installation dependencies, python & pip
 brew install python3
 pip3 install powerline-shell
@@ -18,6 +21,9 @@ rbenv install 3.0.0
 rbenv global 3.0.0
 rbenv rehash
 sudo gem install rails
+brew install puma/puma/puma-dev
+# imagemagick...still
+brew install imagemagick
 
 # tmuxinator 
 brew install tmuxinator
@@ -53,6 +59,7 @@ brew install tig
 brew install watch
 brew install the_silver_searcher
 brew install asdf
+brew install wget
 
 # AWS stuff
 pip3 install awscli --upgrade --user
@@ -60,9 +67,39 @@ curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10
 chmod +x ./aws-iam-authenticator
 mv aws-iam-authenticator /usr/local/bin
 
+## Install aws-mfa
+pip3 install aws-mfa
+mkdir ~/.aws/ 2>/dev/null 
+## https://console.aws.amazon.com/iam/home?#/security_credentials
+cat <<EOT >> ~/.aws/credentials
+[default-long-term]
+aws_access_key_id = XXXXXXXXXXXXX
+aws_secret_access_key = xxxxxxxxxxxxx
+EOT
+
+cat <<EOT >> ~/.aws/config
+[default]
+region = eu-west-1
+EOT
+
+export MFA_DEVICE=arn:aws:iam::<account_id>:mfa/<iam_username> 
+export PATH="$PATH:$HOME/.local/bin"  # Add aws-mfa binary to path
+export PATH="$PATH:$HOME/Library/Python/3.8/bin" # if installed with Python 3 
+
+# Terragrunt
+brew install terragrunt
+
+# Terraform
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+
+# Flux
+brew install fluxcd/tap/flux
+
 # k8s stuff
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
 brew install kubernetes-cli
+brew install kind
 
 # AWS
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
@@ -71,7 +108,7 @@ sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 rm -rf awscli-bundle
 rm -f awscli-bundle.zip
 
-# Java & freinds
+# Java & friends
 brew install sbt
 brew install gradle
 curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
