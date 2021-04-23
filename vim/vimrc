@@ -34,6 +34,8 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'hashicorp/vagrant'
 Plugin 'PProvost/vim-ps1'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
