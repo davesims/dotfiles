@@ -2,6 +2,7 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Basic installation dependencies, python & pip
+brew update
 brew install python3
 pip3 install powerline-shell
 brew install pyenv
@@ -15,10 +16,12 @@ vim +PluginInstall +qall
 
 # ruby, rails & rbenv stuff
 brew install rbenv
+brew install ruby-build
 rbenv init
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 rbenv install 3.0.0
-rbenv global 3.0.0
+rbenv install ruby-3.0.2
+rbenv global ruby-3.0.2
 rbenv rehash
 sudo gem install rails
 brew install puma/puma/puma-dev
@@ -41,7 +44,7 @@ mysql -u root -e "CREATE USER 'davesims'@'localhost'"
 mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'davesims'@'localhost';"
 
 # pgcli & pgvm
-pip3 install pgcli
+brew install pgcli
 curl -s -L https://raw.github.com/guedes/pgvm/master/bin/pgvm-self-install | bash
 
 # redis
@@ -50,6 +53,7 @@ brew services start redis
 
 # frameworks
 brew install yarn
+brew install node@16
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 nvm install node
 npm -g install typescript
@@ -61,6 +65,12 @@ brew install watch
 brew install the_silver_searcher
 brew install asdf
 brew install wget
+brew install urlencode
+brew install tmate
+brew install chamber
+brew install jq
+brew install w3m
+
 
 # AWS stuff
 pip3 install awscli --upgrade --user
