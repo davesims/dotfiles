@@ -142,6 +142,7 @@ endif
 " nnoremap <TAB> :<C-U>call InsertChar#insert(v:count1)<CR>
 
 let g:nerdtree_tabs_open_on_console_startup=1
+let NERDTreeShowHidden=1
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>

@@ -1,0 +1,12 @@
+# ~/.tmuxinator/adrs.yml
+
+name: ruby-warrior      
+root: ~/projects/ruby-warrior
+
+windows:
+  - warrior-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - warrior-cli:
+      layout: main-vertical

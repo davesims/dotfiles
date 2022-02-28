@@ -1,20 +1,20 @@
-# ~/.tmuxinator/hopin.yml
+# ~/.tmuxinator/hopin-web.yml
 
-name: hopin
-root: ~/hopin/hopin
+name: hopin-web
+root: ~/hopin/hopin-web
 
 windows:
-  - hopin-vim:
+  - hopin-web-vim:
       layout: main-vertical
       panes:
         - vim .
-  - hopin-cli:
+  - hopin-web-cli:
       layout: main-vertical
-  - hopin-console:
+  - hopin-web-console:
       layout: main-vertical
       panes:
         - nvm use && node console
-  - hopin-server:
+  - hopin-web-server:
       layout: main-vertical
       panes:
         - nvm use && node start

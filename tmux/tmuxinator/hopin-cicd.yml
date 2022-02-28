@@ -1,20 +1,20 @@
-# ~/.tmuxinator/hopin.yml
+# ~/.tmuxinator/hopin-cicd.yml
 
-name: hopin
-root: ~/hopin/hopin
+name: hopin-cicd
+root: ~/hopin/hopin-cicd
 
 windows:
-  - hopin-vim:
+  - hopin-cicd-vim:
       layout: main-vertical
       panes:
         - vim .
-  - hopin-cli:
+  - hopin-cicd-cli:
       layout: main-vertical
-  - hopin-console:
+  - hopin-cicd-console:
       layout: main-vertical
       panes:
         - nvm use && node console
-  - hopin-server:
+  - hopin-cicd-server:
       layout: main-vertical
       panes:
         - nvm use && node start

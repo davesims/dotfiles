@@ -1,7 +1,7 @@
 # ~/.tmuxinator/yatzy.yml
 
 name: yatzy
-root: ~/github/yatzy_refactoring
+root: ~/projects/yatzy_refactoring
 
 windows:
   - yatzy-vim:

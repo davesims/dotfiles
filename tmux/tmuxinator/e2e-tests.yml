@@ -1,20 +1,20 @@
-# ~/.tmuxinator/hopin.yml
+# ~/.tmuxinator/e2e-tests.yml
 
-name: hopin
-root: ~/hopin/hopin
+name: e2e-tests
+root: ~/hopin/e2e-tests
 
 windows:
-  - hopin-vim:
+  - e2e-tests-vim:
       layout: main-vertical
       panes:
         - vim .
-  - hopin-cli:
+  - e2e-tests-cli:
       layout: main-vertical
-  - hopin-console:
+  - e2e-tests-console:
       layout: main-vertical
       panes:
         - nvm use && node console
-  - hopin-server:
+  - e2e-tests-server:
       layout: main-vertical
       panes:
         - nvm use && node start

@@ -98,6 +98,7 @@ alias fs='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset
 alias sc='bundle exec ruby script/console'
 alias rc='bundle exec rails console'
 alias be='bundle exec'
+alias rebe='rbenv exec bundle exec'
 alias ber='bundle exec rspec'
 alias rdbc='bundle exec rails dbconsole'
 alias sg='./script/generate'

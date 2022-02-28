@@ -1,0 +1,29 @@
+# ~/.tmuxinator/echelon.yml
+
+name: echelon
+root: ~/hopin/echelon
+
+windows:
+  - echelon-vim:
+      layout: main-vertical
+      panes:
+        - vim .
+  - echelon-cli:
+      root: ~/hopin/echelon/server
+      panes:
+        - zsh
+        - rbenv exec bundler exec guard
+  - echelon-console:
+      root: ~/hopin/echelon/server
+      layout: main-vertical
+      panes:
+        - rbenv exec bundler exec rails console
+  - echelon-server:
+      root: ~/hopin/echelon/server
+      layout: main-vertical
+      panes:
+        - docker compose up db redis
+        - rbenv exec bundle exec sidekiq -c 1
+        - rbenv exec bundler exec rails server
+        - cd ../slack && yarn run start:watch
+        - ngrok http --region=us --hostname=cornkits.ngrok.io 4444

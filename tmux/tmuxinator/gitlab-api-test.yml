@@ -1,25 +1,25 @@
-# ~/.tmuxinator/new-coke.yml
+# ~/.tmuxinator/gitlab-api-test.yml
 
-name: new-coke
-root: ~/projects/new-coke
+name: gitlab-api-test
+root: ~/hopin/gitlab-api-test
 
 windows:
-  - new-coke-vim:
+  - gitlab-api-test-vim:
       layout: main-vertical
       panes:
         - vim .
-  - new-coke-cli:
+  - gitlab-api-test-cli:
       layout: main-vertical
-  - new-coke-watch:
-      root: ~/projects/new-coke/web
+  - gitlab-api-test-watch:
+      root: ~/hopin/gitlab-api-test/web
       layout: main-vertical
       panes:
         - nvm use && npm run watch
-  - new-coke-console:
+  - gitlab-api-test-console:
       layout: main-vertical
       panes:
         - nvm use && node console
-  - new-coke-server:
+  - gitlab-api-test-server:
       layout: main-vertical
       panes:
         - nvm use && node start

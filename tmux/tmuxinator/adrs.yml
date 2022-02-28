@@ -1,12 +1,12 @@
-# ~/.tmuxinator/auth.yml
+# ~/.tmuxinator/adrs.yml
 
-name: auth
-root: ~/projects/auth
+name: adrs
+root: ~/hopin/adrs
 
 windows:
-  - auth-vim:
+  - adrs-vim:
       layout: main-vertical
       panes:
         - vim .
-  - auth-cli:
+  - adrs-cli:
       layout: main-vertical
