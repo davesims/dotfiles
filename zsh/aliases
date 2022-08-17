@@ -3,9 +3,9 @@
 alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
 alias rm='rm -i'
-alias hosts="mate /etc/hosts"
+alias hosts="vim /etc/hosts"
 alias outsideip="curl http://ifconfig.me"
-alias userlist='cat /etc/passwd |grep "/bin/bash" |grep "[5-9][0-9][0-9]" |cut -d: -f1'
+alias userlist='cat /etc/passwd |grep "/bin/bash" | grep "[5-9][0-9][0-9]" |cut -d: -f1'
 alias tail="tail -f"
 alias speedtest="curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 alias reset_audio="sudo killall coreaudio"
@@ -17,13 +17,6 @@ alias openports='lsof -i | grep ESTABLISHED'
 # memcached
 alias flush_memcached="echo 'flush_all' | netcat localhost 11211"
 alias memcached_console="netcat localhost 11211"
-
-# todo-txt
-alias t='todo.sh -d ~/.todo/config'
-alias todo="vim ~/Dropbox/todo.txt"
-
-# Show a list of changed files from the last 24 hrs
-alias yesterday="find . -type f -not -path '*/.*' -ctime -1 > .yesterday && cat .yesterday &"
 
 # alias ctags to brew, avoid OSX's crufly old ctags
 alias ctags="`brew --prefix`/bin/ctags"
@@ -45,9 +38,6 @@ alias dnsflush="dscacheutil -flushcache"
 
 # tcp
 alias tcpmon="sudo tcpdump -i en0 -vvv -n -s 0 -A host \$2"
-
-# teamocil
-alias tmc="teamocil \$2"
 
 # tmux
 alias takeover="tmux detach -a"
@@ -93,18 +83,16 @@ alias gems='cd /Library/Ruby/Gems/1.8/gems'
 alias gemdocs='gem server & open -a /Applications/FireFox.app http://localhost:8808'
 
 # rails
-alias ss='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; bundle exec ruby script/server'
-alias fs='clear; echo "removing logs..."; rm -rf log/*.log; echo "removing asset packages..."; rake asset:packager:delete_all; bundle exec foreman start'
-alias sc='bundle exec ruby script/console'
-alias rc='bundle exec rails console'
+alias sc='asdf exec bundle exec ruby script/console'
+alias rc='asdf exec bundle exec rails console'
 alias be='bundle exec'
+alias ae='asdf exec'
 alias rebe='rbenv exec bundle exec'
+alias aebe='asdf exec bundle exec'
 alias ber='bundle exec rspec'
 alias rdbc='bundle exec rails dbconsole'
 alias sg='./script/generate'
 alias migrate='echo "Migrating..."; rake db:migrate; echo "Purging test database.."; rake db:test:purge; echo "Preparing test database.."; rake db:test:prepare'
-alias rails_home='cd /opt/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5'
-alias poller="ruby script/resque_poller -v --queues='iphone'"
 
 #redis
 alias redis_log='tail -F /var/log/redis.log'
@@ -112,37 +100,11 @@ alias redis_log='tail -F /var/log/redis.log'
 #mysql
 alias mysql_start='/usr/local/Cellar/mysql/5.5.14/bin/mysqld_safe'
 
-#davemain slice
-alias davemain='ssh dave@davemain'
-
-#stdavids
-alias stdavids='ssh stdavid5@stdavidsdenton.org'
-# general mobile 
-alias run_weinre='open /Applications/weinre-mac/weinre.app; nohup show 8081 </dev/null &>/dev/null &' # run weinre server if it's not already, and show it at 8081 over showoff.io
-alias hv="nohup hierarchyviewer &"
-
-# emulators
-alias ics="emulator @ics -partition-size 512 "
-
-alias ale="adb -e logcat"
-alias ald="adb -d logcat"
-
 # postgres
 alias pg_status="pg_ctl -D /usr/local/var/postgres status"
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
-
-# VPN STUFF
-alias kill_racoon="sudo launchctl stop com.apple.racoon"
-alias start_racoon="sudo launchctl start com.apple.racoon"
-
-# svn
-alias status='svn status'
-alias saa='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
-alias sra='svn status | grep "^\!" | awk "{print \$2}" | xargs svn remove'
-alias up='svn up'
-alias sfl="svn log | grep -B 6 -A 6 $1"
 
 # kill stuff
 alias killsso="kill -9 $(ps aux | grep '[s]so' | awk '{print $2}')"

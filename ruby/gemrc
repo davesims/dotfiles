@@ -6,6 +6,5 @@ update: --no-ri --no-rdoc --env-shebang
 :verbose: true
 :sources: 
 - https://rubygems.org/
-- https://gems.reelfx.com
 :bulk_threshold: 1000
 :update_sources: true

@@ -1,5 +1,7 @@
 # First, homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/davidsims/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Basic installation dependencies, python & pip
 brew update
@@ -15,18 +17,18 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
 # ruby, rails & rbenv stuff
-brew install rbenv
-brew install ruby-build
-rbenv init
-curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
-rbenv install 3.0.0
-rbenv install ruby-3.0.2
-rbenv global ruby-3.0.2
-rbenv rehash
-sudo gem install rails
+sudo asdf install ruby latest
+gem install rails
 brew install puma/puma/puma-dev
 # imagemagick...still
 brew install imagemagick
+
+# doppler
+brew install gnupg
+brew install dopplerhq/cli/doppler
+
+# gecko 
+brew install geckodriver
 
 # tmuxinator 
 brew install tmuxinator
