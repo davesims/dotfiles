@@ -27,6 +27,9 @@ brew install imagemagick
 brew install gnupg
 brew install dopplerhq/cli/doppler
 
+# heroku
+brew tap heroku/brew && brew install heroku
+
 # gecko 
 brew install geckodriver
 

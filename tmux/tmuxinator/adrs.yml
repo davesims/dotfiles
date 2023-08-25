@@ -1,7 +1,7 @@
 # ~/.tmuxinator/adrs.yml
 
 name: adrs
-root: ~/hopin/adrs
+root: ~/teamshares/architecture-decision-record
 
 windows:
   - adrs-vim:

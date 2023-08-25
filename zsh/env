@@ -64,9 +64,6 @@ export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
 ######### TESTING STUFF ###########
 export PATH=$PATH:/opt/homebrew/Cellar/geckodriver/0.31.0/bin
 
-######### DOPPLER ###########
-export PATH=$PATH:/opt/homebrew/Cellar/gnupg/2.3.7_1/bin
-
 # Go
 export GOPATH=$HOME/go
 

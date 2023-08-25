@@ -11,6 +11,8 @@ else
     echo "Not provisioning..."
 fi
 
+mkdir ~/.config
+
 ######### bash & zsh config-fu ##########
 cp  ~/bin/dotfiles/zshrc ~/.zshrc
 
@@ -24,10 +26,13 @@ ln -nfs ~/bin/dotfiles/git/config ~/.gitconfig
 ln -nfs ~/bin/dotfiles/git/gitignore_global ~/.gitignore_global
 
 ######### vim ############
+mkdir ~/.config/nvim/
 ln -nfs ~/bin/dotfiles/vim/vimrc ~/.vimrc
 ln -nfs ~/bin/dotfiles/vim ~/.vim
 ln -nfs ~/bin/dotfiles/vim/ctags ~/.ctags
 ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
+# share config between vim & nvim
+ln -nfs ~/bin/dotfiles/vim/vimrc ~/.config/nvim/init.vim
 
 ######### tmux ###########
 mkdir ~/.bin
@@ -37,7 +42,6 @@ ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -nfs ~/bin/dotfiles/tmux/tmuxinator ~/.tmuxinator
 
 ######### pgcli ############
-mkdir ~/.config
 mkdir ~/.config/pgcli
 ln -nfs ~/bin/dotfiles/postgres/pgcli/config ~/.config/pgcli/config
 

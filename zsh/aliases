@@ -1,5 +1,7 @@
 # bash
+
 # system conweeniences
+alias vim="/opt/homebrew/Cellar/vim/9.0.1750/bin/vim"
 alias ip='ifconfig | grep inet'
 alias ls='ls -lah'
 alias rm='rm -i'
