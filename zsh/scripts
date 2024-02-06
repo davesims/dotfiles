@@ -1,4 +1,4 @@
-# bash
+#!/bin/bash
 
 red='\e[0;31m'
 RED='\e[1;31m'

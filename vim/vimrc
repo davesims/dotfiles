@@ -41,6 +41,7 @@ Plugin 'jremmen/vim-ripgrep'
 Plugin 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'github/copilot.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
