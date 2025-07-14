@@ -58,9 +58,7 @@ brew services start redis
 
 # frameworks
 brew install yarn
-brew install node@16
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-nvm install node
 npm -g install typescript
 
 # general tooling
