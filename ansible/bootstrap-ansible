@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Ansible-based bootstrap script
+# This replicates the behavior of the original bootstrap script
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+echo "🚀 Starting Ansible-based dotfiles setup..."
+
+# Check if Ansible is installed
+if ! command -v ansible-playbook &> /dev/null; then
+    echo "❌ Ansible is not installed. Please install it first:"
+    echo "   brew install ansible"
+    exit 1
+fi
+
+# Check arguments
+PROVISION=false
+if [[ $1 == "--provision" ]]; then
+    PROVISION=true
+    echo "📦 Full provisioning mode enabled"
+else
+    echo "🔧 Symlink-only mode (use --provision for full setup)"
+fi
+
+# Run the playbook
+if $PROVISION; then
+    echo "🎯 Running full Ansible playbook..."
+    ansible-playbook -i inventory playbook.yml
+else
+    echo "🔗 Running symlink-only tasks..."
+    ansible-playbook -i inventory playbook.yml --tags "symlinks,directories"
+fi
+
+echo "✅ Ansible bootstrap complete!"
+echo ""
+echo "Next steps:"
+echo "1. Restart your terminal or run 'source ~/.zshrc'"
+echo "2. Open Neovim and run ':Lazy sync' to install plugins"
+echo "3. In tmux, press prefix + I to install tmux plugins"
+echo ""
+echo "🎉 Happy coding!"

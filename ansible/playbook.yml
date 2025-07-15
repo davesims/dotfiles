@@ -1,0 +1,328 @@
+---
+- name: Modern macOS Development Environment Setup
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  vars:
+    dotfiles_dir: "{{ ansible_env.HOME }}/bin/dotfiles"
+    homebrew_prefix: "/opt/homebrew"
+    
+    # Language versions from .tool-versions
+    language_versions:
+      nodejs: "22.11.0"
+      ruby: "3.3.0"
+      python: "3.12.0"
+      terraform: "1.9.0"
+    
+    # Homebrew packages from Brewfile
+    homebrew_taps:
+      - dopplerhq/cli
+      - fluxcd/tap
+      - heroku/brew
+    
+    homebrew_packages:
+      - git
+      - neovim
+      - tmux
+      - tmuxinator
+      - asdf
+      - direnv
+      - ripgrep
+      - fd
+      - bat
+      - eza
+      - zoxide
+      - fzf
+      - starship
+      - jq
+      - yq
+      - htop
+      - watch
+      - wget
+      - curl
+      - tree
+      - gnupg
+      - postgresql@15
+      - redis
+      - mysql
+      - pgcli
+      - mycli
+      - tig
+      - awscli
+      - kubectl
+      - helm
+      - terraform
+      - terragrunt
+      - dopplerhq/cli/doppler
+      - docker
+      - docker-compose
+      - kind
+      - shellcheck
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
+      - tmate
+      - chamber
+      - fluxcd/tap/flux
+      - heroku/brew/heroku
+    
+    homebrew_casks:
+      - docker
+      - iterm2
+    
+    # Symlinks to create
+    dotfile_symlinks:
+      - src: "ruby/irbrc"
+        dest: ".irbrc"
+      - src: "ruby/pryrc"
+        dest: ".pryrc"
+      - src: "ruby/gemrc"
+        dest: ".gemrc"
+      - src: "git/config"
+        dest: ".gitconfig"
+      - src: "git/gitignore_global"
+        dest: ".gitignore_global"
+      - src: "nvim"
+        dest: ".config/nvim"
+      - src: "tmux/tmux.conf"
+        dest: ".tmux.conf"
+      - src: "tmux/tmuxinator"
+        dest: ".tmuxinator"
+      - src: "postgres/pgcli/config"
+        dest: ".config/pgcli/config"
+      - src: "mysql/mycli/config"
+        dest: ".myclirc"
+      - src: "node/npmrc"
+        dest: ".npmrc"
+      - src: "ssh/config"
+        dest: ".ssh/config"
+      - src: "starship/starship.toml"
+        dest: ".config/starship.toml"
+    
+    # Services to start
+    homebrew_services:
+      - postgresql@15
+      - redis
+      - mysql
+
+  tasks:
+    - name: Check if Homebrew is installed
+      stat:
+        path: "{{ homebrew_prefix }}/bin/brew"
+      register: homebrew_installed
+      tags: [provision, homebrew]
+
+    - name: Install Homebrew
+      shell: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      when: not homebrew_installed.stat.exists
+      tags: [provision, homebrew]
+
+    - name: Add Homebrew to PATH
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.zprofile"
+        line: 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+        create: yes
+      when: not homebrew_installed.stat.exists
+      tags: [provision, homebrew]
+
+    - name: Update Homebrew
+      homebrew:
+        update_homebrew: yes
+      tags: [provision, homebrew]
+
+    - name: Add Homebrew taps
+      homebrew_tap:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ homebrew_taps }}"
+      tags: [provision, homebrew]
+
+    - name: Install Homebrew packages
+      homebrew:
+        name: "{{ homebrew_packages }}"
+        state: present
+      ignore_errors: yes  # Some packages may conflict
+      tags: [provision, homebrew]
+
+    - name: Install Homebrew casks
+      homebrew_cask:
+        name: "{{ homebrew_casks }}"
+        state: present
+      ignore_errors: yes  # Docker may have conflicts
+      tags: [provision, homebrew]
+
+    - name: Check if Oh My Zsh is installed
+      stat:
+        path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+      register: oh_my_zsh_installed
+      tags: [provision, zsh]
+
+    - name: Install Oh My Zsh
+      shell: |
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      when: not oh_my_zsh_installed.stat.exists
+      tags: [provision, zsh]
+
+    - name: Create necessary directories
+      file:
+        path: "{{ ansible_env.HOME }}/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - ".config"
+        - ".config/pgcli"
+        - ".config/tmuxinator"
+        - ".bin"
+        - ".ssh"
+        - "bin/dotfiles/local"
+      tags: [always, directories]
+
+    - name: Copy zshrc
+      copy:
+        src: "{{ dotfiles_dir }}/zshrc"
+        dest: "{{ ansible_env.HOME }}/.zshrc"
+        backup: yes
+      tags: [always, symlinks]
+
+    - name: Create dotfile symlinks
+      file:
+        src: "{{ dotfiles_dir }}/{{ item.src }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+        state: link
+        force: yes
+      loop: "{{ dotfile_symlinks }}"
+      tags: [always, symlinks]
+
+    - name: Create tmux-specific symlinks
+      file:
+        src: "{{ dotfiles_dir }}/{{ item.src }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+        state: link
+        force: yes
+      loop:
+        - src: "tmux/tmuxinator.sh"
+          dest: ".bin/tmuxinator.sh"
+        - src: "tmux/tmuxinator"
+          dest: ".config/tmuxinator"
+      tags: [always, symlinks]
+
+    - name: Create local override files
+      file:
+        path: "{{ dotfiles_dir }}/local/{{ item }}"
+        state: touch
+        mode: '0644'
+      loop:
+        - local_aliases
+        - local_env
+        - local_scripts
+      tags: [always, directories]
+
+    - name: Add asdf plugins
+      shell: |
+        source {{ homebrew_prefix }}/opt/asdf/libexec/asdf.sh
+        asdf plugin add {{ item.key }} || true
+      loop: "{{ language_versions | dict2items }}"
+      args:
+        executable: /bin/bash
+      tags: [provision, asdf]
+
+    - name: Install language versions
+      shell: |
+        source {{ homebrew_prefix }}/opt/asdf/libexec/asdf.sh
+        asdf install {{ item.key }} {{ item.value }}
+        asdf global {{ item.key }} {{ item.value }}
+      loop: "{{ language_versions | dict2items }}"
+      args:
+        executable: /bin/bash
+      tags: [provision, asdf]
+
+    - name: Install essential Ruby gems
+      shell: |
+        source {{ homebrew_prefix }}/opt/asdf/libexec/asdf.sh
+        gem install bundler rails puma-dev
+      args:
+        executable: /bin/bash
+      tags: [provision, gems]
+
+    - name: Install essential npm packages
+      shell: |
+        source {{ homebrew_prefix }}/opt/asdf/libexec/asdf.sh
+        npm install -g @anthropic-ai/claude-code typescript eslint prettier
+      args:
+        executable: /bin/bash
+      tags: [provision, npm]
+
+    - name: Install essential Python packages
+      shell: |
+        source {{ homebrew_prefix }}/opt/asdf/libexec/asdf.sh
+        pip install --upgrade pip powerline-shell awscli aws-mfa
+      args:
+        executable: /bin/bash
+      tags: [provision, python]
+
+    - name: Start Homebrew services
+      shell: "brew services start {{ item }}"
+      loop: "{{ homebrew_services }}"
+      ignore_errors: yes
+      tags: [provision, services]
+
+    - name: Create AWS credentials structure
+      file:
+        path: "{{ ansible_env.HOME }}/.aws"
+        state: directory
+        mode: '0755'
+      tags: [provision, aws]
+
+    - name: Create AWS credentials template
+      copy:
+        content: |
+          [default-long-term]
+          aws_access_key_id = YOUR_ACCESS_KEY_ID
+          aws_secret_access_key = YOUR_SECRET_ACCESS_KEY
+        dest: "{{ ansible_env.HOME }}/.aws/credentials"
+        force: no
+      tags: [provision, aws]
+
+    - name: Create AWS config
+      copy:
+        content: |
+          [default]
+          region = us-west-2
+          output = json
+        dest: "{{ ansible_env.HOME }}/.aws/config"
+        force: no
+      tags: [provision, aws]
+
+    - name: Setup MySQL user
+      shell: |
+        mysql -u root -e "CREATE USER IF NOT EXISTS 'davesims'@'localhost';" || true
+        mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'davesims'@'localhost';" || true
+      ignore_errors: yes
+      tags: [provision, mysql]
+
+    - name: Install tmux plugin manager
+      git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        force: yes
+      tags: [provision, tmux]
+
+    - name: Setup FZF integration
+      shell: "{{ homebrew_prefix }}/opt/fzf/install --all --no-bash --no-fish"
+      args:
+        creates: "{{ ansible_env.HOME }}/.fzf.zsh"
+      tags: [provision, fzf]
+
+    - name: Display completion message
+      debug:
+        msg: |
+          ✅ Modern development environment setup complete!
+          
+          Next steps:
+          1. Restart your terminal or run 'source ~/.zshrc'
+          2. Open Neovim and run ':Lazy sync' to install plugins
+          3. In tmux, press prefix + I to install tmux plugins
+          4. Configure your AWS credentials in ~/.aws/credentials
+          
+          🎉 Happy coding!
+      tags: [always]
