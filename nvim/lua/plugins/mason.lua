@@ -9,46 +9,18 @@ return {
     opts = {
       -- Make sure to use the names found in `:Mason`
       ensure_installed = {
-        -- Language servers
+        -- Core language servers (most reliable)
         "lua-language-server",
-        "typescript-language-server",
-        "eslint-lsp",
-        "json-lsp",
-        "yaml-language-server",
-        "html-lsp",
-        "css-lsp",
-        "tailwindcss-language-server",
         "ruby-lsp",
-        "solargraph",
-        "pyright",
-        "rust-analyzer",
         "terraform-ls",
-        "dockerfile-language-server",
-        "docker-compose-language-service",
         "marksman",
-        "bash-language-server",
 
-        -- Formatters
+        -- Core formatters
         "stylua",
-        "prettier",
-        "black",
-        "isort",
-        "rubocop",
         "shfmt",
 
-        -- Linters
-        "eslint_d",
-        "flake8",
+        -- Core linters
         "shellcheck",
-        "yamllint",
-
-        -- Debuggers
-        "debugpy",
-        "js-debug-adapter",
-        "codelldb",
-
-        -- Other tools
-        "tree-sitter-cli",
       },
     },
   },

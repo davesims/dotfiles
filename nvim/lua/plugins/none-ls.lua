@@ -14,24 +14,14 @@ return {
     -- Only insert new sources, do not replace the existing ones
     -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
     opts.sources = require("astrocore").list_insert_unique(opts.sources, {
-      -- Formatters
+      -- Core formatters
       null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.prettier.with {
-        extra_filetypes = { "toml" },
-      },
-      null_ls.builtins.formatting.black,
-      null_ls.builtins.formatting.isort,
-      null_ls.builtins.formatting.rubocop,
       null_ls.builtins.formatting.shfmt,
       
-      -- Linters
-      null_ls.builtins.diagnostics.eslint_d,
-      null_ls.builtins.diagnostics.flake8,
+      -- Core linters
       null_ls.builtins.diagnostics.shellcheck,
-      null_ls.builtins.diagnostics.yamllint,
       
-      -- Code actions
-      null_ls.builtins.code_actions.eslint_d,
+      -- Core code actions
       null_ls.builtins.code_actions.shellcheck,
     })
   end,
