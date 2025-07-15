@@ -14,13 +14,63 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
   
-  -- Claude Code integration
+  -- AI Assistant integrations
   {
     "greggh/claude-code.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("claude-code").setup()
     end,
+  },
+  
+  -- Gemini AI integration
+  {
+    "David-Kunz/gen.nvim",
+    config = function()
+      require("gen").setup({
+        model = "gemini-pro",
+        host = "localhost",
+        port = "11434",
+        display_mode = "float",
+        show_prompt = false,
+        show_model = false,
+        no_auto_close = false,
+        debug = false
+      })
+    end,
+    keys = {
+      { "<leader>ai", ":Gen<cr>", desc = "Open AI Generation", mode = { "n", "v" } },
+      { "<leader>ag", ":Gen Generate<cr>", desc = "Generate with AI", mode = { "n", "v" } },
+      { "<leader>ac", ":Gen Chat<cr>", desc = "Chat with AI", mode = { "n", "v" } },
+    },
+  },
+
+  -- Alternative: Simple Gemini integration
+  {
+    "robitx/gp.nvim",
+    config = function()
+      require("gp").setup({
+        providers = {
+          gemini = {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:generateContent?key={{secret}}",
+            secret = os.getenv("GEMINI_API_KEY"),
+          },
+        },
+        agents = {
+          {
+            name = "Gemini",
+            provider = "gemini",
+            model = "gemini-pro",
+            system_prompt = "You are a helpful AI assistant.",
+          },
+        },
+      })
+    end,
+    keys = {
+      { "<leader>gp", "<cmd>GpChatToggle<cr>", desc = "Toggle Gemini Chat" },
+      { "<leader>gc", "<cmd>GpChatNew<cr>", desc = "New Gemini Chat" },
+      { "<leader>gr", "<cmd>GpRewrite<cr>", desc = "Rewrite with Gemini", mode = "v" },
+    },
   },
 
   -- Additional modern plugins
