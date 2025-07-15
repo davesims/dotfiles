@@ -23,25 +23,32 @@ return {
     end,
   },
   
-  -- Gemini AI integration
+  -- Local AI integration via Ollama
   {
     "David-Kunz/gen.nvim",
     config = function()
       require("gen").setup({
-        model = "gemini-pro",
+        model = "codellama:7b",        -- Default model for code generation
         host = "localhost",
-        port = "11434",
+        port = "11434",                -- Default Ollama port
         display_mode = "float",
         show_prompt = false,
-        show_model = false,
+        show_model = true,
         no_auto_close = false,
-        debug = false
+        debug = false,
+        -- Custom prompts for different models
+        models = {
+          ["codellama:7b"] = "Code Llama 7B",
+          ["gemma:7b"] = "Gemma 7B", 
+          ["mistral:7b"] = "Mistral 7B",
+        },
       })
     end,
     keys = {
       { "<leader>ai", ":Gen<cr>", desc = "Open AI Generation", mode = { "n", "v" } },
       { "<leader>ag", ":Gen Generate<cr>", desc = "Generate with AI", mode = { "n", "v" } },
       { "<leader>ac", ":Gen Chat<cr>", desc = "Chat with AI", mode = { "n", "v" } },
+      { "<leader>am", ":Gen Select Model<cr>", desc = "Select AI Model" },
     },
   },
 

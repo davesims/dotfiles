@@ -70,6 +70,21 @@ echo "🐍 Installing essential Python packages..."
 pip install --upgrade pip
 pip install powerline-shell awscli aws-mfa
 
+# Install Ollama for local AI models
+echo "🤖 Installing Ollama for local AI models..."
+if ! command -v ollama &> /dev/null; then
+    curl -fsSL https://ollama.ai/install.sh | sh
+    echo "✅ Ollama installed"
+else
+    echo "✅ Ollama already installed"
+fi
+
+# Download essential AI models
+echo "📥 Downloading essential AI models..."
+ollama pull codellama:7b
+ollama pull gemma:7b
+ollama pull mistral:7b
+
 # Configure services
 echo "🔧 Configuring services..."
 
@@ -173,5 +188,9 @@ echo "2. Restart your terminal or run 'source ~/.zshrc'"
 echo "3. Open Neovim and run ':Lazy sync' to install plugins"
 echo "4. In tmux, press prefix + I to install tmux plugins"
 echo "5. Configure your AWS credentials in ~/.aws/credentials"
+echo "6. Set up AI integrations:"
+echo "   - Ollama models are already downloaded and ready"
+echo "   - Add GEMINI_API_KEY to local/local_env for Gemini integration"
+echo "   - Claude Code works with your existing CLI setup"
 echo ""
-echo "🎉 Happy coding!"
+echo "🎉 Happy coding with AI assistance!"

@@ -56,6 +56,9 @@ brew "kind"           # Kubernetes in Docker
 # Language tooling (languages managed by asdf)
 brew "shellcheck"     # Shell script analysis
 
+# AI and ML tools
+brew "ollama"         # Local AI model runner
+
 # Modern shell enhancements
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
