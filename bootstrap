@@ -11,7 +11,8 @@ else
     echo "Not provisioning..."
 fi
 
-mkdir ~/.config
+# Create necessary directories
+mkdir -p ~/.config
 
 ######### bash & zsh config-fu ##########
 cp  ~/bin/dotfiles/zshrc ~/.zshrc
@@ -25,43 +26,40 @@ ln -nfs ~/bin/dotfiles/ruby/gemrc ~/.gemrc
 ln -nfs ~/bin/dotfiles/git/config ~/.gitconfig
 ln -nfs ~/bin/dotfiles/git/gitignore_global ~/.gitignore_global
 
-######### vim ############
-mkdir ~/.config/nvim/
-ln -nfs ~/bin/dotfiles/vim/vimrc ~/.vimrc
-ln -nfs ~/bin/dotfiles/vim ~/.vim
-ln -nfs ~/bin/dotfiles/vim/ctags ~/.ctags
-ln -nfs ~/bin/dotfiles/vim/gvimrc ~/.gvimrc
-# share config between vim & nvim
-ln -nfs ~/bin/dotfiles/vim/vimrc ~/.config/nvim/init.vim
+######### neovim (modern config) ############
+# Remove existing nvim config and create fresh symlink
+rm -rf ~/.config/nvim
+ln -nfs ~/bin/dotfiles/nvim ~/.config/nvim
 
 ######### tmux ###########
-mkdir ~/.bin
+mkdir -p ~/.bin
 ln -nfs ~/bin/dotfiles/tmux/tmuxinator.sh  ~/.bin/tmuxinator.sh
-ln -s ~/bin/dotfiles/tmux/tmuxinator  ~/.config/tmuxinator
+ln -nfs ~/bin/dotfiles/tmux/tmuxinator  ~/.config/tmuxinator
 ln -nfs ~/bin/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -nfs ~/bin/dotfiles/tmux/tmuxinator ~/.tmuxinator
 
 ######### pgcli ############
-mkdir ~/.config/pgcli
+mkdir -p ~/.config/pgcli
 ln -nfs ~/bin/dotfiles/postgres/pgcli/config ~/.config/pgcli/config
 
 ######### mycli ############
 ln -nfs ~/bin/dotfiles/mysql/mycli/config ~/.myclirc
 
-######### pgvm ############
-# ln -nfs ~/bin/dotfiles/postgres/pgvm/pgvm_env ~/.pgvm/pgvm_env
-
 ######### node ############
 ln -nfs ~/bin/dotfiles/node/npmrc ~/.npmrc  
 
 ######### ssh ############
-mkdir ~/.ssh
+mkdir -p ~/.ssh
 ln -nfs ~/bin/dotfiles/ssh/config ~/.ssh/config
 
+######### starship prompt ############
+mkdir -p ~/.config
+ln -nfs ~/bin/dotfiles/starship/starship.toml ~/.config/starship.toml
+
 ######### local config not to be stored in VCS ########
-mkdir ~/bin/dotfiles/local
+mkdir -p ~/bin/dotfiles/local
 touch ~/bin/dotfiles/local/local_aliases
 touch ~/bin/dotfiles/local/local_env
 touch ~/bin/dotfiles/local/local_scripts
 
-source ~/.zshrc
+echo "Bootstrap complete! Run 'source ~/.zshrc' to reload shell configuration."
