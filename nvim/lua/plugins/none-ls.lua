@@ -23,7 +23,6 @@ return {
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.rubocop,
       null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.formatting.terraform_fmt,
       
       -- Linters
       null_ls.builtins.diagnostics.eslint_d,

@@ -35,7 +35,6 @@ return {
         "isort",
         "rubocop",
         "shfmt",
-        "terraform-fmt",
 
         -- Linters
         "eslint_d",
