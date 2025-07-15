@@ -9,3 +9,4 @@ vim/bundle/
 vim/bundle
 vim/bundle/
 chamber-$version-darwin-amd64
+node_modules/
