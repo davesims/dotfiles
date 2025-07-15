@@ -1,129 +1,177 @@
-# First, homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/davidsims/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
+#!/bin/bash
 
-# Basic installation dependencies, python & pip
+# Modern macOS Development Environment Setup
+# This script sets up a modern development environment using Homebrew and asdf
+
+set -e  # Exit on error
+
+echo "🚀 Starting modern macOS development environment setup..."
+
+# Install Homebrew if not already installed
+if ! command -v brew &> /dev/null; then
+    echo "📦 Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    # Add Homebrew to PATH
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    echo "✅ Homebrew already installed"
+fi
+
+# Update Homebrew
+echo "🔄 Updating Homebrew..."
 brew update
-brew install python3
-pip3 install powerline-shell
-brew install pyenv
-# tmux & zsh
-brew install tmux
-brew install zsh zsh-completions
-chsh -s $(which zsh)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
 
-# ruby, rails & rbenv stuff
-sudo asdf install ruby latest
-gem install rails
-brew install puma/puma/puma-dev
-# imagemagick...still
-brew install imagemagick
+# Install packages from Brewfile
+echo "📦 Installing packages from Brewfile..."
+brew bundle --file=~/bin/dotfiles/Brewfile
 
-# doppler
-brew install gnupg
-brew install dopplerhq/cli/doppler
+# Install Oh My Zsh if not already installed
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "🐚 Installing Oh My Zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+else
+    echo "✅ Oh My Zsh already installed"
+fi
 
-# heroku
-brew tap heroku/brew && brew install heroku
+# Install asdf plugins and set up version management
+echo "🔧 Setting up asdf version management..."
 
-# gecko 
-brew install geckodriver
+# Add asdf plugins
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git 2>/dev/null || true
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git 2>/dev/null || true
+asdf plugin add python https://github.com/asdf-vm/asdf-python.git 2>/dev/null || true
+asdf plugin add terraform https://github.com/asdf-community/asdf-terraform.git 2>/dev/null || true
 
-# tmuxinator 
-brew install tmuxinator
-tmuxinator doctor
+# Install latest versions
+echo "📚 Installing latest language versions..."
+asdf install nodejs latest
+asdf install ruby latest
+asdf install python latest
+asdf install terraform latest
 
-# postgres
-brew install postgres
-brew services start postgresql
+# Set global versions
+asdf global nodejs latest
+asdf global ruby latest
+asdf global python latest
+asdf global terraform latest
 
-# mysql 
-brew install mysql
-brew install mycli
-brew services start mysql  
-mysql -u root -e "CREATE USER 'davesims'@'localhost'"
-mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'davesims'@'localhost';"
+# Install essential gems
+echo "💎 Installing essential Ruby gems..."
+gem install bundler rails puma-dev
 
-# pgcli & pgvm
-brew install pgcli
-curl -s -L https://raw.github.com/guedes/pgvm/master/bin/pgvm-self-install | bash
+# Install essential npm packages
+echo "📦 Installing essential npm packages..."
+npm install -g @anthropic-ai/claude-code typescript eslint prettier
 
-# redis
-brew install redis
+# Install essential Python packages
+echo "🐍 Installing essential Python packages..."
+pip install --upgrade pip
+pip install powerline-shell awscli aws-mfa
+
+# Configure services
+echo "🔧 Configuring services..."
+
+# Start PostgreSQL
+brew services start postgresql@15
+
+# Start Redis
 brew services start redis
 
-# frameworks
-brew install yarn
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-npm -g install typescript
+# Start MySQL
+brew services start mysql
 
-# general tooling
-brew install htop
-brew install tig
-brew install watch
-brew install the_silver_searcher
-brew install asdf
-brew install wget
-brew install urlencode
-brew install tmate
-brew install chamber
-brew install jq
-brew install w3m
+# Set up MySQL user (if not exists)
+mysql -u root -e "CREATE USER IF NOT EXISTS 'davesims'@'localhost';" 2>/dev/null || true
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'davesims'@'localhost';" 2>/dev/null || true
 
-
-# AWS stuff
-pip3 install awscli --upgrade --user
-curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/aws-iam-authenticator
-chmod +x ./aws-iam-authenticator
-mv aws-iam-authenticator /usr/local/bin
-
-## Install aws-mfa
-pip3 install aws-mfa
-mkdir ~/.aws/ 2>/dev/null 
-## https://console.aws.amazon.com/iam/home?#/security_credentials
-cat <<EOT >> ~/.aws/credentials
+# Create AWS credentials structure
+mkdir -p ~/.aws
+if [ ! -f ~/.aws/credentials ]; then
+    echo "☁️ Creating AWS credentials template..."
+    cat > ~/.aws/credentials << 'EOL'
 [default-long-term]
-aws_access_key_id = XXXXXXXXXXXXX
-aws_secret_access_key = xxxxxxxxxxxxx
-EOT
+aws_access_key_id = YOUR_ACCESS_KEY_ID
+aws_secret_access_key = YOUR_SECRET_ACCESS_KEY
+EOL
+fi
 
-cat <<EOT >> ~/.aws/config
+if [ ! -f ~/.aws/config ]; then
+    echo "☁️ Creating AWS config..."
+    cat > ~/.aws/config << 'EOL'
 [default]
-region = eu-west-1
-EOT
+region = us-west-2
+output = json
+EOL
+fi
 
-# export MFA_DEVICE=arn:aws:iam::<account_id>:mfa/<iam_username> 
-export PATH="$PATH:$HOME/.local/bin"  # Add aws-mfa binary to path
-export PATH="$PATH:$HOME/Library/Python/3.8/bin" # if installed with Python 3 
+# Set up zsh enhancements
+echo "🐚 Setting up modern shell enhancements..."
 
-# Terragrunt
-brew install terragrunt
+# Create .zshrc additions for modern tools
+cat >> ~/.zshrc << 'EOL'
 
-# Terraform
-brew tap hashicorp/tap
-brew install hashicorp/tap/terraform
+# Modern shell enhancements
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
 
-# Flux
-brew install fluxcd/tap/flux
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
 
-# k8s stuff
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
-brew install kubernetes-cli
-brew install kind
+if command -v direnv &> /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
 
-# AWS
-curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip -a awscli-bundle.zip
-sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-rm -rf awscli-bundle
-rm -f awscli-bundle.zip
+# Modern aliases
+if command -v eza &> /dev/null; then
+    alias ls="eza --icons"
+    alias ll="eza -la --icons"
+    alias lt="eza --tree --icons"
+fi
 
-# Java & friends
-brew install sbt
-brew install gradle
-curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-brew install flyway 
+if command -v bat &> /dev/null; then
+    alias cat="bat"
+fi
+
+if command -v fd &> /dev/null; then
+    alias find="fd"
+fi
+
+if command -v rg &> /dev/null; then
+    alias grep="rg"
+fi
+
+EOL
+
+# Set up FZF integration
+echo "🔍 Setting up FZF integration..."
+$(brew --prefix)/opt/fzf/install --all --no-bash --no-fish
+
+# Create .tool-versions file
+echo "📋 Creating .tool-versions file..."
+cat > ~/bin/dotfiles/.tool-versions << 'EOL'
+nodejs 22.11.0
+ruby 3.3.0
+python 3.12.0
+terraform 1.9.0
+EOL
+
+# Install tmux plugin manager
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "📺 Installing tmux plugin manager..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+echo "✅ Modern development environment setup complete!"
+echo ""
+echo "Next steps:"
+echo "1. Run './bootstrap' to symlink configuration files"
+echo "2. Restart your terminal or run 'source ~/.zshrc'"
+echo "3. Open Neovim and run ':Lazy sync' to install plugins"
+echo "4. In tmux, press prefix + I to install tmux plugins"
+echo "5. Configure your AWS credentials in ~/.aws/credentials"
+echo ""
+echo "🎉 Happy coding!"

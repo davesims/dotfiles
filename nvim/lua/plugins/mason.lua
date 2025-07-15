@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- Customize Mason
 
 ---@type LazySpec
@@ -11,16 +9,46 @@ return {
     opts = {
       -- Make sure to use the names found in `:Mason`
       ensure_installed = {
-        -- install language servers
+        -- Language servers
         "lua-language-server",
+        "typescript-language-server",
+        "eslint-lsp",
+        "json-lsp",
+        "yaml-language-server",
+        "html-lsp",
+        "css-lsp",
+        "tailwindcss-language-server",
+        "ruby-lsp",
+        "solargraph",
+        "pyright",
+        "rust-analyzer",
+        "terraform-ls",
+        "dockerfile-language-server",
+        "docker-compose-language-service",
+        "marksman",
+        "bash-language-server",
 
-        -- install formatters
+        -- Formatters
         "stylua",
+        "prettier",
+        "black",
+        "isort",
+        "rubocop",
+        "shfmt",
+        "terraform-fmt",
 
-        -- install debuggers
+        -- Linters
+        "eslint_d",
+        "flake8",
+        "shellcheck",
+        "yamllint",
+
+        -- Debuggers
         "debugpy",
+        "js-debug-adapter",
+        "codelldb",
 
-        -- install any other package
+        -- Other tools
         "tree-sitter-cli",
       },
     },

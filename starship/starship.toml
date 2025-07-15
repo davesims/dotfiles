@@ -1,0 +1,82 @@
+# Starship configuration for modern development
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Wait 10 milliseconds for starship to check files under the current directory
+scan_timeout = 10
+
+# Use custom format
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$fill\
+$nodejs\
+$ruby\
+$python\
+$terraform\
+$kubernetes\
+$aws\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Disable blank line at start of prompt
+add_newline = false
+
+[fill]
+symbol = " "
+
+[directory]
+style = "blue"
+truncation_length = 4
+truncate_to_repo = false
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[git_branch]
+symbol = "🌱 "
+truncation_length = 8
+truncation_symbol = "…/"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "cyan"
+
+[nodejs]
+symbol = "⬢ "
+style = "green"
+
+[ruby]
+symbol = "💎 "
+style = "red"
+
+[python]
+symbol = "🐍 "
+style = "yellow"
+
+[terraform]
+symbol = "💠 "
+style = "purple"
+
+[kubernetes]
+symbol = "☸ "
+style = "blue"
+disabled = false
+
+[aws]
+symbol = "☁️ "
+style = "orange"
+
+[cmd_duration]
+min_time = 4
+show_milliseconds = false
+disabled = false
+style = "yellow"
