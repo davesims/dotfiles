@@ -14,69 +14,114 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
   
-  -- AI Assistant integrations
+  -- Unified AI Assistant Manager
+  {
+    "robitx/gp.nvim",
+    config = function()
+      require("gp").setup({
+        providers = {
+          openai = {
+            endpoint = "https://api.openai.com/v1/chat/completions",
+            secret = os.getenv("OPENAI_API_KEY"),
+          },
+          anthropic = {
+            endpoint = "https://api.anthropic.com/v1/messages",
+            secret = os.getenv("ANTHROPIC_API_KEY"),
+          },
+          gemini = {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:generateContent?key={{secret}}",
+            secret = os.getenv("GEMINI_API_KEY"),
+          },
+          ollama = {
+            endpoint = "http://localhost:11434/v1/chat/completions",
+            secret = "ollama",
+          },
+        },
+        agents = {
+          {
+            name = "Claude",
+            provider = "anthropic",
+            model = "claude-3-5-sonnet-20241022",
+            system_prompt = "You are a helpful AI programming assistant. Be concise and practical.",
+          },
+          {
+            name = "Gemini",
+            provider = "gemini", 
+            model = "gemini-pro",
+            system_prompt = "You are a helpful AI assistant. Provide clear, accurate responses.",
+          },
+          {
+            name = "CodeLlama",
+            provider = "ollama",
+            model = "codellama:7b",
+            system_prompt = "You are a code generation assistant. Focus on writing clean, efficient code.",
+          },
+          {
+            name = "Mistral",
+            provider = "ollama",
+            model = "mistral:7b", 
+            system_prompt = "You are a helpful AI assistant with strong reasoning capabilities.",
+          },
+          {
+            name = "Gemma",
+            provider = "ollama",
+            model = "gemma:7b",
+            system_prompt = "You are a helpful general-purpose AI assistant.",
+          },
+        },
+      })
+    end,
+    keys = {
+      -- AI Selection and Chat
+      { "<leader>as", "<cmd>GpAgent<cr>", desc = "Select AI Agent" },
+      { "<leader>ac", "<cmd>GpChatNew<cr>", desc = "New AI Chat" },
+      { "<leader>at", "<cmd>GpChatToggle<cr>", desc = "Toggle AI Chat" },
+      { "<leader>af", "<cmd>GpChatFinder<cr>", desc = "Find AI Chats" },
+      
+      -- Code Operations
+      { "<leader>ar", "<cmd>GpRewrite<cr>", desc = "AI Rewrite", mode = "v" },
+      { "<leader>aa", "<cmd>GpAppend<cr>", desc = "AI Append", mode = "v" },
+      { "<leader>ao", "<cmd>GpPrepend<cr>", desc = "AI Prepend", mode = "v" },
+      { "<leader>ai", "<cmd>GpImplement<cr>", desc = "AI Implement", mode = "v" },
+      
+      -- Quick Actions
+      { "<leader>ae", "<cmd>GpExplain<cr>", desc = "AI Explain", mode = "v" },
+      { "<leader>au", "<cmd>GpUnitTests<cr>", desc = "AI Unit Tests", mode = "v" },
+      { "<leader>ad", "<cmd>GpDocstring<cr>", desc = "AI Docstring", mode = "v" },
+    },
+  },
+
+  -- Claude Code integration (for terminal workflow)
   {
     "greggh/claude-code.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("claude-code").setup()
     end,
+    keys = {
+      { "<C-,>", "<cmd>ClaudeCode<cr>", desc = "Claude Code Terminal" },
+      { "<leader>cc", "<cmd>ClaudeCode<cr>", desc = "Claude Code Terminal" },
+      { "<leader>cC", "<cmd>ClaudeCodeContinue<cr>", desc = "Claude Code Continue" },
+    },
   },
   
-  -- Local AI integration via Ollama
+  -- Simple local AI generation (kept for quick tasks)
   {
     "David-Kunz/gen.nvim",
     config = function()
       require("gen").setup({
-        model = "codellama:7b",        -- Default model for code generation
+        model = "codellama:7b",
         host = "localhost",
-        port = "11434",                -- Default Ollama port
+        port = "11434",
         display_mode = "float",
         show_prompt = false,
         show_model = true,
         no_auto_close = false,
         debug = false,
-        -- Custom prompts for different models
-        models = {
-          ["codellama:7b"] = "Code Llama 7B",
-          ["gemma:7b"] = "Gemma 7B", 
-          ["mistral:7b"] = "Mistral 7B",
-        },
       })
     end,
     keys = {
-      { "<leader>ai", ":Gen<cr>", desc = "Open AI Generation", mode = { "n", "v" } },
-      { "<leader>ag", ":Gen Generate<cr>", desc = "Generate with AI", mode = { "n", "v" } },
-      { "<leader>ac", ":Gen Chat<cr>", desc = "Chat with AI", mode = { "n", "v" } },
-      { "<leader>am", ":Gen Select Model<cr>", desc = "Select AI Model" },
-    },
-  },
-
-  -- Alternative: Simple Gemini integration
-  {
-    "robitx/gp.nvim",
-    config = function()
-      require("gp").setup({
-        providers = {
-          gemini = {
-            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:generateContent?key={{secret}}",
-            secret = os.getenv("GEMINI_API_KEY"),
-          },
-        },
-        agents = {
-          {
-            name = "Gemini",
-            provider = "gemini",
-            model = "gemini-pro",
-            system_prompt = "You are a helpful AI assistant.",
-          },
-        },
-      })
-    end,
-    keys = {
-      { "<leader>gp", "<cmd>GpChatToggle<cr>", desc = "Toggle Gemini Chat" },
-      { "<leader>gc", "<cmd>GpChatNew<cr>", desc = "New Gemini Chat" },
-      { "<leader>gr", "<cmd>GpRewrite<cr>", desc = "Rewrite with Gemini", mode = "v" },
+      { "<leader>ag", ":Gen<cr>", desc = "Quick AI Generation", mode = { "n", "v" } },
     },
   },
 
